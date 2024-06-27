@@ -1,6 +1,4 @@
-*/data_tracking_image_2/
-*/training/
+**/data_tracking_image_2/
+**/training/
 
-/data_tracking_image_2/
-/training/
-
+**/*.exe
