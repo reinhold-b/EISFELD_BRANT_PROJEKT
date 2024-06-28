@@ -1,5 +1,6 @@
 #include "menu.hpp"
 #include <iostream>
+
 using namespace std;
 
 Menu::Menu(){
@@ -13,6 +14,8 @@ Menu::Menu(){
     cin >> m_imageSequence;
 
     cout << m_playerName << endl << m_imageCount << endl << m_imageSequence; //For Testing
+
+
 }
 
 string Menu::getPlayerName(){

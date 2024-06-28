@@ -2,3 +2,5 @@
 **/training/
 
 **/*.exe
+**/*.out
+/.vscode
