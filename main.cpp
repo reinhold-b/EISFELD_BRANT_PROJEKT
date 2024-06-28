@@ -2,8 +2,10 @@
 #include "./GUI/Extractor.cpp"
 
 int main(){
-    Menu Test1 = Menu();
-    Extractor e = Extractor();
+    Menu gameMenu = Menu();
+    int numImages = gameMenu.getImageCount();
+    std::string seq = gameMenu.getImageSequence();
+    Extractor e = Extractor(numImages, seq);
     e.open();
     return 0;
 }

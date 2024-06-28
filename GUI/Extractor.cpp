@@ -54,8 +54,12 @@ std::vector<Label> loadLabelsFromFile(std::string filename)
 
 class Extractor
 {
+    private:
+        int m_imgCount = 1;
+        std::string m_imgSeq;
     public:
     Extractor(){}
+    Extractor(int imgCount, std::string imgSeq) : m_imgCount(imgCount), m_imgSeq(imgSeq) {}
 
         int open() {
     //reading labels (GT Boxes) from KITTI Dataset
@@ -76,12 +80,12 @@ class Extractor
 
 
     //Load example image
-    cv::Mat image = cv::imread("./data_tracking_image_2/training/image_02/0000/000000.png");
+    cv::Mat image = cv::imread("./data_tracking_image_2/training/image_02/0000/000153.png");
     if (image.empty()) {
         std::cerr << "Error: Could not open or find the image!" << std::endl;
         return -1;
     }
-
+    
         cv::imshow("Display Image", image);
         cv::waitKey(0);
 

@@ -7,9 +7,9 @@ class Menu{
 private:
     string m_playerName;
     int m_imageCount;
-    int m_imageSequence;
+    string m_imageSequence;
 public:
-    Menu(string _playerName, int _imageCount, int _imageSequence):
+    Menu(string _playerName, int _imageCount, string _imageSequence):
     m_playerName(_playerName),
     m_imageCount(_imageCount),
     m_imageSequence(_imageSequence){};
@@ -17,7 +17,7 @@ public:
 
     string getPlayerName();
     int getImageCount();
-    int getImageSequence();
+    string getImageSequence();
 
     void setPlayerName(string newPlayerName);
     void setImageCount(int newImageCount);

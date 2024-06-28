@@ -24,7 +24,7 @@ string Menu::getPlayerName(){
 int Menu::getImageCount(){
     return m_imageCount;
 };
-int Menu::getImageSequence(){
+string Menu::getImageSequence(){
     return m_imageSequence;
 };
 
