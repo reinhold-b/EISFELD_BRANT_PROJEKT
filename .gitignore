@@ -3,5 +3,5 @@
 
 **/*.exe
 **/*.out
-./.vscode
+**/.vscode/*.json
 main.exe
