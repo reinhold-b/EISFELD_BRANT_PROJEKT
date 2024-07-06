@@ -62,9 +62,11 @@ class Extractor
         std::string m_labelPath = "./training/label_02/";
         std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
 
+        std::vector<Label> m_labels;
+
         std::string buildImageName(int loopIndex) {
             std::string paddingZeros = "";
-            std::string loopIndexStr = to_string(loopIndex);
+            std::string loopIndexStr = std::to_string(loopIndex);
 
             for (int i = 0; i < 6 - loopIndexStr.length(); i++) {
                 paddingZeros += "0";
@@ -72,41 +74,38 @@ class Extractor
             return m_imgPath + m_imgSeq + "/" + paddingZeros + loopIndexStr + ".png";  
         }
 
-    public:
-    Extractor(){}
-    Extractor(int imgCount, std::string imgSeq) : m_imgCount(imgCount), m_imgSeq(imgSeq) {}
-
         int open() {
     //reading labels (GT Boxes) from KITTI Dataset
     std::cout << "Error: Could not open or find the image!" << std::endl;
     std::string pathToLabelFile = m_labelPath + m_imgSeq + ".txt"; 
-    auto allLabelsFromSequence = loadLabelsFromFile(pathToLabelFile);
-    std::cout << "numberOfLabels: " << allLabelsFromSequence.size() << std::endl;
-    for (const auto& label : allLabelsFromSequence) { //print class of all elements from frame number 5
+    m_labels = loadLabelsFromFile(pathToLabelFile);
+    std::cout << "numberOfLabels: " << m_labels.size() << std::endl;
+    for (const auto& label : m_labels) { //print class of all elements from frame number 5
         if (label.m_frame == 5) {
             std::cout << "Type: " << label.m_type << std::endl;
         }
     }
+    return 0;
+    }
+
+    public:
+    Extractor(){
+        open();
+    }
+    Extractor(int imgCount, std::string imgSeq) : m_imgCount(imgCount), m_imgSeq(imgSeq) {
+        open();
+    }
 
     //Get current timestamp
-    auto now = std::chrono::system_clock::now();
-    std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-    std::cout << "Current time: " << std::ctime(&now_time_t) << std::endl;
+    // auto now = std::chrono::system_clock::now();
+    // std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
+    // std::cout << "Current time: " << std::ctime(&now_time_t) << std::endl;
 
-
-    //Load example image
-    cv::Mat image; 
-    for (int i = 0; i < m_imgCount; i++) {
-        image = cv::imread(buildImageName(i));
-        if (image.empty()) {
-            std::cerr << "Error: Could not open or find the image!" << std::endl;
-            return -1;
+    std::vector<std::string> getImgPaths() {
+        std::vector<std::string> paths; 
+        for (int i = 0; i < m_imgCount; i++) {
+            paths.push_back(buildImageName(i));
         }
-        cv::imshow("Display Image", image);
-        cv::waitKey(0);
-    }
-    
-
-        return 0;
+        return paths;
     }
 };
