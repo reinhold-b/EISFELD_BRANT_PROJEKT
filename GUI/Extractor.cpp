@@ -2,6 +2,8 @@
 #include <fstream>
 #include <opencv2/opencv.hpp>
 #include <chrono>
+#include <string>
+
 
 class Label
 {
@@ -57,6 +59,19 @@ class Extractor
     private:
         int m_imgCount = 1;
         std::string m_imgSeq;
+        std::string m_labelPath = "./training/label_02/";
+        std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
+
+        std::string buildImageName(int loopIndex) {
+            std::string paddingZeros = "";
+            std::string loopIndexStr = to_string(loopIndex);
+
+            for (int i = 0; i < 6 - loopIndexStr.length(); i++) {
+                paddingZeros += "0";
+            }
+            return m_imgPath + m_imgSeq + "/" + paddingZeros + loopIndexStr + ".png";  
+        }
+
     public:
     Extractor(){}
     Extractor(int imgCount, std::string imgSeq) : m_imgCount(imgCount), m_imgSeq(imgSeq) {}
@@ -64,7 +79,7 @@ class Extractor
         int open() {
     //reading labels (GT Boxes) from KITTI Dataset
     std::cout << "Error: Could not open or find the image!" << std::endl;
-    std::string pathToLabelFile = "./training/label_02/0000.txt";
+    std::string pathToLabelFile = m_labelPath + m_imgSeq + ".txt"; 
     auto allLabelsFromSequence = loadLabelsFromFile(pathToLabelFile);
     std::cout << "numberOfLabels: " << allLabelsFromSequence.size() << std::endl;
     for (const auto& label : allLabelsFromSequence) { //print class of all elements from frame number 5
@@ -80,14 +95,17 @@ class Extractor
 
 
     //Load example image
-    cv::Mat image = cv::imread("./data_tracking_image_2/training/image_02/0000/000153.png");
-    if (image.empty()) {
-        std::cerr << "Error: Could not open or find the image!" << std::endl;
-        return -1;
-    }
-    
+    cv::Mat image; 
+    for (int i = 0; i < m_imgCount; i++) {
+        image = cv::imread(buildImageName(i));
+        if (image.empty()) {
+            std::cerr << "Error: Could not open or find the image!" << std::endl;
+            return -1;
+        }
         cv::imshow("Display Image", image);
         cv::waitKey(0);
+    }
+    
 
         return 0;
     }
