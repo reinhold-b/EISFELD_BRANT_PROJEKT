@@ -3,10 +3,36 @@
 #include <opencv2/opencv.hpp>
 #include <chrono>
 #include <string>
+#include <filesystem>
+#include <map>
+
 #include "Label.cpp"
 
 
 
+
+
+
+class Extractor
+{
+    private:
+        int m_imgCount = 1;
+        std::string m_imgSeq;
+        std::string m_labelPath = "./training/label_02/";
+        std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
+
+        std::vector<Label> m_labels;
+        std::vector<int> m_labelIndices; 
+
+        std::string buildImageName(int loopIndex) {
+            std::string paddingZeros = "";
+            std::string loopIndexStr = std::to_string(loopIndex);
+
+            for (int i = 0; i < 6 - loopIndexStr.length(); i++) {
+                paddingZeros += "0";
+            }
+            return m_imgPath + m_imgSeq + "/" + paddingZeros + loopIndexStr + ".png";  
+        }
 
 std::vector<Label> loadLabelsFromFile(std::string filename)
 {
@@ -44,33 +70,31 @@ std::vector<Label> loadLabelsFromFile(std::string filename)
     return labels;
 }
 
-
-class Extractor
-{
-    private:
-        int m_imgCount = 1;
-        std::string m_imgSeq;
-        std::string m_labelPath = "./training/label_02/";
-        std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
-
-        std::vector<Label> m_labels;
-
-        std::string buildImageName(int loopIndex) {
-            std::string paddingZeros = "";
-            std::string loopIndexStr = std::to_string(loopIndex);
-
-            for (int i = 0; i < 6 - loopIndexStr.length(); i++) {
-                paddingZeros += "0";
-            }
-            return m_imgPath + m_imgSeq + "/" + paddingZeros + loopIndexStr + ".png";  
-        }
-
         int open() {
     //reading labels (GT Boxes) from KITTI Dataset
     std::cout << "Error: Could not open or find the image!" << std::endl;
     std::string pathToLabelFile = m_labelPath + m_imgSeq + ".txt"; 
     m_labels = loadLabelsFromFile(pathToLabelFile);
     std::cout << "numberOfLabels: " << m_labels.size() << std::endl;
+
+    return 0;
+    }
+
+    int walkDir(std::string path) {
+        int file_count = 0;
+        if (filesystem::exists(path) && filesystem::is_directory(path)) {
+        // Iterate through the directory
+        for (const auto& entry : filesystem::directory_iterator(path)) {
+            // Check if the entry is a regular file
+            if (filesystem::is_regular_file(entry)) {
+                ++file_count;
+            }
+        }
+    } else {
+        std::cerr << "Path does not exist or is not a directory." << std::endl;
+        return -1;
+    }
+    m_imgCount = file_count;
     return 0;
     }
 
@@ -80,6 +104,7 @@ class Extractor
     }
     Extractor(int imgCount, std::string imgSeq) : m_imgCount(imgCount), m_imgSeq(imgSeq) {
         open();
+        walkDir(m_imgPath + m_imgSeq + "/");
     }
 
     //Get current timestamp
@@ -89,8 +114,12 @@ class Extractor
 
     std::vector<std::string> getImgPaths() {
         std::vector<std::string> paths; 
+        std::srand(std::time(nullptr)); // use current time as seed for random generator
+        int random_value; 
         for (int i = 0; i < m_imgCount; i++) {
-            paths.push_back(buildImageName(i));
+            random_value = std::rand() % m_imgCount;
+            paths.push_back(buildImageName(random_value));
+            m_labelIndices.push_back(random_value);
         }
         return paths;
     }
@@ -102,5 +131,9 @@ class Extractor
             if (l.m_frame == i && l.m_type != "DontCare") labelsTToReturn.push_back(l);
         }
         return labelsTToReturn;
+    }
+
+    std::vector<int> getLabelIndices() {
+        return m_labelIndices;
     }
 };
