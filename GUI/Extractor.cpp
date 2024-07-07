@@ -3,19 +3,10 @@
 #include <opencv2/opencv.hpp>
 #include <chrono>
 #include <string>
+#include "Label.cpp"
 
 
-class Label
-{
-public:
-    Label() : m_frame(0), m_type(""), m_bbox(cv::Rect()) {}
-    Label(int frame, const std::string &type, const cv::Rect &bbox)
-        : m_frame(frame), m_type(type), m_bbox(bbox) {}
 
-    int m_frame;            //Frame number, where the bounding box corresponds to
-    std::string m_type;     //Class of the bounding box (e.g. Pedestrian, Car, Cyclist) --> DontCare should be ignored
-    cv::Rect m_bbox;
-};
 
 std::vector<Label> loadLabelsFromFile(std::string filename)
 {
@@ -80,11 +71,6 @@ class Extractor
     std::string pathToLabelFile = m_labelPath + m_imgSeq + ".txt"; 
     m_labels = loadLabelsFromFile(pathToLabelFile);
     std::cout << "numberOfLabels: " << m_labels.size() << std::endl;
-    for (const auto& label : m_labels) { //print class of all elements from frame number 5
-        if (label.m_frame == 5) {
-            std::cout << "Type: " << label.m_type << std::endl;
-        }
-    }
     return 0;
     }
 
@@ -107,5 +93,14 @@ class Extractor
             paths.push_back(buildImageName(i));
         }
         return paths;
+    }
+
+    std::vector<Label> getImgLabel(int i) {
+        std::vector<Label> labelsTToReturn;
+        for (auto &l : m_labels) 
+        {
+            if (l.m_frame == i && l.m_type != "DontCare") labelsTToReturn.push_back(l);
+        }
+        return labelsTToReturn;
     }
 };
