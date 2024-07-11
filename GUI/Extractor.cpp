@@ -1,3 +1,5 @@
+#ifndef EXTRACTOR_CPP
+#define EXTRACTOR_CPP
 #include <vector>
 #include <fstream>
 #include <opencv2/opencv.hpp>
@@ -137,3 +139,5 @@ std::vector<Label> loadLabelsFromFile(std::string filename)
         return m_labelIndices;
     }
 };
+
+#endif //EXTRACTOR_CPP

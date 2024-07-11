@@ -1,3 +1,5 @@
+#ifndef MENU_CPP
+#define MENU_CPP
 #include "menu.hpp"
 #include <iostream>
 
@@ -37,3 +39,5 @@ void Menu::setImageCount(int newImageCount){
 void Menu::setImageSequence(int newImageSequence){
     m_imageSequence = newImageSequence;
 }
+
+#endif //MENU_CPP

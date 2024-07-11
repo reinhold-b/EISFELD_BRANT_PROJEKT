@@ -1,3 +1,5 @@
+#ifndef GUI_CPP
+#define GUI_CPP
 #include "Label.cpp" 
 
 #include <iostream>
@@ -37,3 +39,5 @@ class GUI {
         return 0;
         }
 };
+
+#endif //GUI_CPP

@@ -3,6 +3,7 @@
 #include "./GUI/GUI.cpp"
 
 #include <map>
+#include <filesystem>
 
 int main(){
     Menu gameMenu = Menu();

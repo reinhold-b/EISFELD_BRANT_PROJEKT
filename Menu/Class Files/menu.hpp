@@ -26,4 +26,4 @@ public:
     ~Menu(){};
 };
 
-#endif
+#endif  //MENU_HPP_INCLUDED
