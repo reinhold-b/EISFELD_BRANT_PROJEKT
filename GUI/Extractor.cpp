@@ -82,11 +82,11 @@ std::vector<Label> loadLabelsFromFile(std::string filename)
 
     int walkDir(std::string path) {
         int file_count = 0;
-        if (filesystem::exists(path) && filesystem::is_directory(path)) {
+        if (std::filesystem::exists(path) && std::filesystem::is_directory(path)) {
         // Iterate through the directory
-        for (const auto& entry : filesystem::directory_iterator(path)) {
+        for (const auto& entry : std::filesystem::directory_iterator(path)) {
             // Check if the entry is a regular file
-            if (filesystem::is_regular_file(entry)) {
+            if (std::filesystem::is_regular_file(entry)) {
                 ++file_count;
             }
         }
