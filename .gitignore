@@ -5,3 +5,6 @@
 **/*.out
 **/.vscode/*.json
 main.exe
+
+build/
+CMake/
