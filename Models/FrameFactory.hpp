@@ -24,7 +24,6 @@ class FrameFactory {
     std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
 
     std::vector<Label> m_labels;
-    std::vector<int> m_labelIndices; 
 
     std::string buildImageName(int loopIndex);
     std::vector<Label> loadLabelsFromFile(std::string filename);

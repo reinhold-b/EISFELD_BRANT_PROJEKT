@@ -99,18 +99,6 @@ int FrameFactory::walkDir(std::string path) {
     // std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
     // std::cout << "Current time: " << std::ctime(&now_time_t) << std::endl;
 
-    std::vector<std::string> FrameFactory::getImgPaths() {
-        std::vector<std::string> paths; 
-        std::srand(std::time(nullptr)); // use current time as seed for random generator
-        int random_value; 
-        for (int i = 0; i < m_imgCount; i++) {
-            random_value = std::rand() % m_imgCount;
-            paths.push_back(buildImageName(random_value));
-            m_labelIndices.push_back(random_value);
-        }
-        return paths;
-    }
-
     std::vector<Label> FrameFactory::getImgLabel(int i) {
         std::vector<Label> labelsTToReturn;
         for (auto &l : m_labels) 
@@ -118,10 +106,6 @@ int FrameFactory::walkDir(std::string path) {
             if (l.m_frame == i && l.m_type != "DontCare") labelsTToReturn.push_back(l);
         }
         return labelsTToReturn;
-    }
-
-    std::vector<int> FrameFactory::getLabelIndices() {
-        return m_labelIndices;
     }
 
     Frame* FrameFactory::take(GameMode mode) {
@@ -133,11 +117,7 @@ int FrameFactory::walkDir(std::string path) {
         random_value = std::rand() % m_imgCount;
         std::string imgPath = buildImageName(random_value);
 
-        std::vector<Label> labelsToReturn;
-        for (auto &l : m_labels) 
-        {
-            if (l.m_frame == random_value && l.m_type != "DontCare") labelsToReturn.push_back(l);
-        }
+        std::vector<Label> labelsToReturn = getImgLabel(random_value);
 
         if (labelsToReturn.empty()) {
             return FrameFactory::take(mode);
