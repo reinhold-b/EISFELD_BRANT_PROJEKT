@@ -1,6 +1,17 @@
 #include "SingleGameFrame.hpp"
+#include "../GUI/Label.hpp"
+
+#include <vector>
+#include <string>
 
 void SingleGameFrame::show() {
+            std::vector<Label> labels = SingleGameFrame::getLabels();
+            std::vector<std::string> paths; 
+
+            std::srand(std::time(nullptr)); // use current time as seed for random generator
+            int random_value; 
+            random_value = std::rand() % labels.size();
+ 
                 cv::Mat image; 
             image = cv::imread(SingleGameFrame::getImgPath());
             if (image.empty()) {
@@ -9,12 +20,10 @@ void SingleGameFrame::show() {
 
             int thickness = 2; 
 
-            for (auto &l : SingleGameFrame::getLabels()) {
-                rectangle(image, l.m_bbox, 
-                cv::Scalar(255, 0, 0), 
-                thickness, cv::LINE_8);
- 
-            }
+            rectangle(image, labels[random_value].m_bbox, 
+            cv::Scalar(255, 0, 0), 
+            thickness, cv::LINE_8);
+
             // Drawing the Rectangle 
             cv::imshow("Display Image", image);
             cv::waitKey(0);

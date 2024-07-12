@@ -10,7 +10,13 @@
 int main(){
     Menu gameMenu = Menu();
     int numImages = gameMenu.getImageCount();
-    int gamemode = gameMenu.getGamemode(); 
+    GameMode gamemode;
+    if (gameMenu.getGamemode() == 1) {
+        gamemode = GameMode::singular;
+    } else {
+        gamemode = GameMode::allAtOnce;
+    } 
+
     std::string seq = gameMenu.getImageSequence();
 
     FrameFactory fac = FrameFactory(seq);
@@ -23,7 +29,7 @@ int main(){
     // GUI window = GUI();
 
     for (int i = 0; i < numImages; i++) {
-        Frame* frame = fac.take(GameMode::singular);
+        Frame* frame = fac.take(gamemode);
         (*frame).show();
     }
 
