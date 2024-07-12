@@ -25,7 +25,8 @@ class Frame {
             mode(mode) {};
 
         std::string getImgPath();
-        void show();
+        std::vector<Label> getLabels();
+        virtual void show();
 };
 
 #endif //FRAME_INCLUDED
