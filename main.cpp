@@ -20,7 +20,7 @@ int main(){
     for (int i = 0; i < numImages; i++) {
         labels = e.getImgLabel(labelIndices[i]);
         if (labels.empty()) {
-            std::cout << "Keien BBs" << std::endl;
+            std::cout << "Keine BBs" << std::endl;
             continue;
         }
         window.renderImage(pathsToOpen[i], labels);

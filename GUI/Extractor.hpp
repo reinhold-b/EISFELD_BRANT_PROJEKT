@@ -11,7 +11,9 @@
 #include <fstream>
 #include "Label.hpp"  // Assuming you have a Label.hpp file#
 #ifdef __APPLE__
-#define APPLE true 
+#define APPLE true
+#else 
+#define APPLE false 
 #endif
 
 class Extractor
@@ -19,8 +21,8 @@ class Extractor
 private:
     int m_imgCount = 1;
     std::string m_imgSeq;
-    std::string m_labelPath = APPLE ? "./training/label_02/" : "";
-    std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
+    std::string m_labelPath = APPLE ? "./training/label_02/" : "../training/label_02/"; //Relative File Paths vary between Mac and Windows
+    std::string m_imgPath = APPLE ? "./data_tracking_image_2/training/image_02/" : "../data_tracking_image_2/training/image_02/";
 
     std::vector<Label> m_labels;
     std::vector<int> m_labelIndices; 

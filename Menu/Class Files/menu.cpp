@@ -15,7 +15,7 @@ Menu::Menu(){
     cout << "Which imagesequence do you chose? ";
     cin >> m_imageSequence;
 
-    cout << m_playerName << endl << m_imageCount << endl << m_imageSequence; //For Testing
+    cout << m_playerName << endl << m_imageCount << endl << m_imageSequence << endl; //For Testing
 
 
 }
