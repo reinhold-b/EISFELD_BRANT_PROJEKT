@@ -9,14 +9,17 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-#include "Label.hpp"  // Assuming you have a Label.hpp file
+#include "Label.hpp"  // Assuming you have a Label.hpp file#
+#ifdef __APPLE__
+#define APPLE true 
+#endif
 
 class Extractor
 {
 private:
     int m_imgCount = 1;
     std::string m_imgSeq;
-    std::string m_labelPath = "./training/label_02/";
+    std::string m_labelPath = APPLE ? "./training/label_02/" : "";
     std::string m_imgPath = "./data_tracking_image_2/training/image_02/";
 
     std::vector<Label> m_labels;
