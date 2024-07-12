@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "Label.hpp"
+#include "../GUI/Label.hpp"
 
 enum GameMode {singular, allAtOnce};
 

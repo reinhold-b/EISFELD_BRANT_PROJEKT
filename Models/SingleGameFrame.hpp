@@ -3,8 +3,9 @@
 
 #include "Frame.hpp"
 
-class SingleFrameGame : public Frame {
+class SingleGameFrame : public Frame {
     public:
+        SingleGameFrame(std::string _path, std::vector<Label> _labels) : Frame(_path, _labels) {};
         void show() override;
 };
 
