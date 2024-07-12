@@ -8,6 +8,7 @@
 int main(){
     Menu gameMenu = Menu();
     int numImages = gameMenu.getImageCount();
+    int gamemode = gameMenu.getGamemode(); 
     std::string seq = gameMenu.getImageSequence();
 
     Extractor e = Extractor(numImages, seq);
@@ -16,7 +17,6 @@ int main(){
     std::vector<Label> labels; 
 
     GUI window = GUI();
-    
     for (int i = 0; i < numImages; i++) {
         labels = e.getImgLabel(labelIndices[i]);
         if (labels.empty()) {
