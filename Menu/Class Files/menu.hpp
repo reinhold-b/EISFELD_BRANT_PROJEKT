@@ -7,17 +7,20 @@ class Menu{
 private:
     string m_playerName;
     int m_imageCount;
+    int m_gamemode;
     string m_imageSequence;
 public:
-    Menu(string _playerName, int _imageCount, string _imageSequence):
+    Menu(string _playerName, int _imageCount, string _imageSequence, int _gamemode):
     m_playerName(_playerName),
     m_imageCount(_imageCount),
-    m_imageSequence(_imageSequence){};
+    m_imageSequence(_imageSequence),
+    m_gamemode(_gamemode) {};
     Menu(); //this method contains the GUI text
 
     string getPlayerName();
     int getImageCount();
     string getImageSequence();
+    int getGamemode();
 
     void setPlayerName(string newPlayerName);
     void setImageCount(int newImageCount);
