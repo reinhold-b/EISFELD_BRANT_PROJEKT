@@ -1,6 +1,6 @@
-#include "./Menu/Class Files/menu.cpp"
-#include "./GUI/Extractor.cpp"
-#include "./GUI/GUI.cpp"
+#include "./Menu/Class Files/menu.hpp"
+#include "./GUI/Extractor.hpp"
+#include "./GUI/GUI.hpp"
 
 #include <map>
 #include <filesystem>
