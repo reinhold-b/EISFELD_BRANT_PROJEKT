@@ -11,12 +11,17 @@
 
 class GUI {
 private:
-    // Private members can be added here if needed
+    struct Point
+    {
+        int x;
+        int y;
+    };
+    Point cursorInfo;
 
 public:
     GUI();
-
-    int renderImage(const std::string &path, const std::vector<Label> &labels); 
+    int renderImage(const std::string &path, const std::vector<Label> &labels);
+    void setCursorPos(Point p);
 };
 
 #endif // GUI_HPP

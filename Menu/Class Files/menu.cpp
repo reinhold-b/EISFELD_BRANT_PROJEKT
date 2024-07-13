@@ -17,7 +17,7 @@ Menu::Menu(){
     cout << "Which gamemode? (1: single, 2: multi)";
     cin >> m_gamemode;
 
-    cout << m_playerName << endl << m_imageCount << endl << m_imageSequence; //For Testing
+    cout << m_playerName << endl << m_imageCount << endl << m_imageSequence << endl; //For Testing
 
 
 }
