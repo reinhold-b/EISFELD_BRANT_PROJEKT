@@ -10,13 +10,6 @@
 #include <opencv2/imgproc.hpp> 
 #include <opencv2/highgui/highgui.hpp> 
 
-void onMouse(int event, int x, int y, int, void*){
-    if (event == cv::EVENT_LBUTTONDOWN){
-        
-        std::cout << "Lbutton down at x: " << x << "and y: " << y << std::endl;
-    }
-}
-
 GUI::GUI() {};
 
 int GUI::renderImage(const std::string &path, const std::vector<Label> &labels) {
@@ -38,7 +31,6 @@ int GUI::renderImage(const std::string &path, const std::vector<Label> &labels) 
     // Drawing the Rectangle 
 
     cv::imshow("Display Image", image);    
-    cv::setMouseCallback("Display Image", onMouse, nullptr);
     cv::waitKey(0);
     return 0;
 }
