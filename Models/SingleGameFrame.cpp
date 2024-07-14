@@ -23,7 +23,7 @@ void SingleGameFrame::show() {
     int thickness = 2; 
 
     rectangle(image, labels[random_value].m_bbox, 
-    cv::Scalar(255, 0, 0), 
+    cv::Scalar(0, 0, 255), 
     thickness, cv::LINE_8);
 
     // Drawing the Rectangle 
