@@ -26,6 +26,8 @@ class Frame {
 
         std::string getImgPath();
         std::vector<Label> getLabels();
+        static void onMouse(int event, int x, int y, int, void* userdata);
+        bool checkForHit(cv::Point p);
         virtual void show();
 };
 

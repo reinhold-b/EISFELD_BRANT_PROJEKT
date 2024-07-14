@@ -13,36 +13,6 @@
 #include "MultiGameFrame.hpp"
 #include "SingleGameFrame.hpp"
 
-void FrameFactory::onMouse(int event, int x, int y, int, void* userdata)
-{
-    if (event == cv::EVENT_LBUTTONDOWN)
-    {
-        FrameFactory* self = static_cast<FrameFactory*>(userdata);
-        if (self->checkForHit(cv::Point(x, y)))
-        {
-            std::cout << "Hit!" << std::endl;
-        }
-        else
-        {
-            std::cout << "Miss!" << std::endl;
-        }   
-        std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
-    }
-}
-
-bool FrameFactory::checkForHit(cv::Point p)
-{
-    for (const auto& i : m_labels){
-        if (i.m_bbox.contains(p) && i.m_type != "DontCare") 
-        {
-            std::cout << i.m_bbox.x << " || " << i.m_bbox.y << " - " << i.m_bbox.width << " || " << i.m_bbox.height << std::endl;
-            return true;
-        }
-        
-    }
-    return false;
-}
-
 std::string FrameFactory::buildImageName(int loopIndex) {
     std::string paddingZeros = "";
     std::string loopIndexStr = std::to_string(loopIndex);

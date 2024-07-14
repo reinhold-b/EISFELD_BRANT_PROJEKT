@@ -31,7 +31,7 @@ int main(){
     for (int i = 0; i < numImages; i++) {
         Frame* frame = fac.take(gamemode);
         (*frame).show();
-        cv::setMouseCallback("Display Image", FrameFactory::onMouse, &fac);
+        cv::setMouseCallback("Display Image", Frame::onMouse, frame);
     }
 
     return 0;

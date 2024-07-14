@@ -40,8 +40,6 @@ public:
     std::vector<Label> getImgLabel(int i);
     std::vector<int> getLabelIndices();
     Frame* take(GameMode mode);
-    static void onMouse(int event, int x, int y, int, void* userdata);
-    bool checkForHit(cv::Point p);
 };
 
 #endif //FACTORY_INCLUDED
