@@ -35,6 +35,7 @@ void Frame::onMouse(int event, int x, int y, int, void* userdata)
         if (self->checkForHit(cv::Point(x, y)))
         {
             std::cout << "Hit!" << std::endl;
+            self->calcReactionTime();
         }
         else
         {
@@ -42,4 +43,13 @@ void Frame::onMouse(int event, int x, int y, int, void* userdata)
         }   
         std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
     }
+}
+
+void Frame::calcReactionTime() {
+    //Get current timestamp
+    auto now = std::chrono::steady_clock::now();
+
+    double elapsed_time_ms = std::chrono::steady_clock::duration(now - start).count();
+
+    std::cout << elapsed_time_ms / 1000000 << "ms" << std::endl;
 }
