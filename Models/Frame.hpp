@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 
 #include "../GUI/Label.hpp"
 
@@ -13,22 +14,39 @@ class Frame {
         std::string m_imgPath; 
         std::vector<Label> m_labels; 
         GameMode mode; 
+        std::chrono::steady_clock::time_point start;
+        std::time_t result;
+
+        void setStart() {
+            //Get current timestamp
+            start = std::chrono::steady_clock::now();
+        } 
+
     public:
         Frame(std::string _path, std::vector<Label> _labels) :
             m_imgPath(_path),
             m_labels(_labels),
-            mode(GameMode::singular) {};
+            mode(GameMode::singular) {
+                std::cout << std::endl << "Created: " << this << std::endl;
+                setStart();
+                calcReactionTime();
+           };
 
         Frame(std::string _path, std::vector<Label> _labels, GameMode mode) :
             m_imgPath(_path),
             m_labels(_labels),
-            mode(mode) {};
+            mode(mode) {
+                std::cout << this << std::endl;
+                setStart();
+                calcReactionTime();
+            };
 
         std::string getImgPath();
         std::vector<Label> getLabels();
         static void onMouse(int event, int x, int y, int, void* userdata);
         bool checkForHit(cv::Point p);
         virtual void show();
+        void calcReactionTime();
 };
 
 #endif //FRAME_INCLUDED
