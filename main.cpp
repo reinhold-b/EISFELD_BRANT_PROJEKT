@@ -51,8 +51,8 @@ int main(){
 
     for (int i = 0; i < numImages; i++) {
         Frame* frame = fac.take(gamemode);
-        (*frame).show();
         cv::setMouseCallback("Display Image", onMouse, frame);
+        (*frame).show();
         std::cout << "Reaction Time: " << (*frame).result << std::endl;
         times.push_back(frame->result);
     }
