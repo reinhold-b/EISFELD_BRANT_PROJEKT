@@ -80,24 +80,26 @@ string Menu::readValidName()
 int Menu::readValidImageCount()
 {
     int num;
-    bool isNumber = false;
+    bool isNumber = true;
+    bool isInRange = true;
     string newImageCount;
     std::cin >> newImageCount;
-
     try {
         num = std::stoi(newImageCount); //string to int
-    }  catch (const std::out_of_range& e) {
+    } catch (const std::invalid_argument& e) {
+        isNumber = false;
+    } catch (const std::out_of_range& e) {
         isNumber = false;
     }
 
     isNumber = !containsChar(newImageCount);
 
-    while(num < 1 || num > 99 || !isNumber)
+    while(num < 1 || num > 99 || cin.fail() || !isNumber)
     /*
     Upper limit can be adjusted since the imagesequences contain up to 1000 images
     */
     {
-        std::cin.clear();
+       std::cin.clear();
         std::cout << "Invalid number of images! Make sure your number is in between 1 and 99. No letters." << std::endl;
         std::cout << "New number of images: ";
         std::cin >> newImageCount;
@@ -106,7 +108,9 @@ int Menu::readValidImageCount()
         num = std::stoi(newImageCount); //string to int
         } catch (const std::invalid_argument& e) {
         isNumber = false;
-        }     
+        } catch (const std::out_of_range& e) {
+        isInRange = false;
+    }
     }
     return num;
 }
