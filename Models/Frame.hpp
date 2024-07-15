@@ -27,6 +27,7 @@ class Frame {
             m_imgPath(_path),
             m_labels(_labels),
             mode(GameMode::singular) {
+                std::cout << std::endl << "Created: " << this << std::endl;
                 setStart();
                 calcReactionTime();
            };
@@ -35,6 +36,7 @@ class Frame {
             m_imgPath(_path),
             m_labels(_labels),
             mode(mode) {
+                std::cout << this << std::endl;
                 setStart();
                 calcReactionTime();
             };

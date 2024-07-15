@@ -34,7 +34,7 @@ void Frame::onMouse(int event, int x, int y, int, void* userdata)
         Frame* self = static_cast<Frame*>(userdata);
         if (self->checkForHit(cv::Point(x, y)))
         {
-            std::cout << "Hit!" << std::endl;
+            std::cout << std::endl << "Hit on: " << self << std::endl;
             self->calcReactionTime();
         }
         else
