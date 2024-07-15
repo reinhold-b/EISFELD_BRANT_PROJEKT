@@ -6,6 +6,7 @@
 #include <string>
 
 
+
 void SingleGameFrame::show() {
     std::vector<Label> labels = SingleGameFrame::getLabels();
     std::vector<std::string> paths; 
@@ -14,7 +15,7 @@ void SingleGameFrame::show() {
     int random_value; 
     random_value = std::rand() % labels.size();
 
-        cv::Mat image; 
+    cv::Mat image; 
     image = cv::imread(SingleGameFrame::getImgPath());
     if (image.empty()) {
         std::cerr << "Error: Could not open or find the image!" << std::endl;

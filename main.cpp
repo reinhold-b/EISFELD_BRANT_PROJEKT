@@ -7,11 +7,12 @@
 #include <map>
 #include <filesystem>
 
+
 void onMouse(int event, int x, int y, int, void* userdata)
 {
+    Frame* self = static_cast<Frame*>(userdata);
     if (event == cv::EVENT_LBUTTONDOWN)
     {
-        Frame* self = static_cast<Frame*>(userdata);
         if (self->checkForHit(cv::Point(x, y)))
         {
             std::cout << std::endl << "Hit on: " << self << std::endl;
@@ -25,6 +26,7 @@ void onMouse(int event, int x, int y, int, void* userdata)
         std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
     }
 }
+
 
 int main(){
     Menu gameMenu = Menu();
@@ -49,8 +51,11 @@ int main(){
 
     std::vector<double> times;
 
+    cv::imshow("Display Image", 0);
+
+    Frame* frame; 
     for (int i = 0; i < numImages; i++) {
-        Frame* frame = fac.take(gamemode);
+        frame = fac.take(gamemode);
         cv::setMouseCallback("Display Image", onMouse, frame);
         (*frame).show();
         std::cout << "Reaction Time: " << (*frame).result << std::endl;
