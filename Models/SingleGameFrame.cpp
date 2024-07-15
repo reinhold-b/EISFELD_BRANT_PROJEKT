@@ -30,3 +30,8 @@ void SingleGameFrame::show() {
     cv::imshow("Display Image", image);
     cv::waitKey(0);
 }
+
+void SingleGameFrame::handleHit(double reactionTime) 
+{
+    SingleGameFrame::result = reactionTime;
+}

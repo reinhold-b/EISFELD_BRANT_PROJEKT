@@ -14,6 +14,10 @@ void Frame::show() {
     return;
 }
 
+void Frame::handleHit(double reactionTime) {
+    return;
+}
+
 bool Frame::checkForHit(cv::Point p)
 {
     std::vector<Label> currLabels = m_labels;
@@ -30,19 +34,14 @@ bool Frame::checkForHit(cv::Point p)
     return false;
 }
 
-void Frame::onMouse(int event, int x, int y, int, void* userdata)
-{
-    if (event == cv::EVENT_LBUTTONDOWN)
-    {
-        Frame* self = static_cast<Frame*>(userdata);
-        if (self->checkForHit(cv::Point(x, y)))
-        {
-            std::cout << "Hit!" << std::endl;
-        }
-        else
-        {
-            std::cout << "Miss!" << std::endl;
-        }   
-        std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
-    }
+
+
+double Frame::calcReactionTime() {
+    //Get current timestamp
+    auto now = std::chrono::steady_clock::now();
+
+    double elapsed_time_ms = std::chrono::steady_clock::duration(now - start).count();
+
+    std::cout << elapsed_time_ms / 1000000 << "ms" << std::endl;
+    return elapsed_time_ms / 1000000;
 }
