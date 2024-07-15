@@ -126,7 +126,8 @@ int Menu::readValidGamemode()
     } catch (const std::invalid_argument& e) {
         isNumber = false;
     }
-    while(num < 1 || num > 2 || std::cin.fail())
+    isNumber = !containsChar(newGamemode);
+    while(num < 1 || num > 2 || std::cin.fail() || !isNumber)
     {
         std::cin.clear();
         std::cout << "Invalid input! Please enter [1] or [2] for your desired gamemode! " << std::endl;
