@@ -43,5 +43,7 @@ double Frame::calcReactionTime() {
     double elapsed_time_ms = std::chrono::steady_clock::duration(now - start).count();
 
     std::cout << elapsed_time_ms / 1000000 << "ms" << std::endl;
-    return elapsed_time_ms / 1000000;
+
+    // 3 sek zurueckgeben wenn timeout
+    return elapsed_time_ms != 0 ? elapsed_time_ms / 1000000 : 3000;
 }

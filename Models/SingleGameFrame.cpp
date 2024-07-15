@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <string>
+#include <chrono>
 
 
 
@@ -29,7 +30,18 @@ void SingleGameFrame::show() {
 
     // Drawing the Rectangle 
     cv::imshow("Display Image", image);
-    cv::waitKey(0);
+
+    auto begin = std::chrono::high_resolution_clock::now();
+
+    while (result == 0 ) {
+        auto now = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin); 
+        if (elapsed.count() >= 3000) {
+            std::cout << "timeout" << std::endl;
+            break;
+        }
+        cv::waitKey(10);
+    } 
 }
 
 void SingleGameFrame::handleHit(double reactionTime) 

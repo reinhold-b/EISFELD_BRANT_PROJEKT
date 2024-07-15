@@ -1,6 +1,8 @@
 #include "MultiGameFrame.hpp"
 #include "FrameFactory.hpp"
 
+#include <chrono>
+
 
 void MultiGameFrame::show() {
     cv::Mat image; 
@@ -19,6 +21,17 @@ void MultiGameFrame::show() {
     }
     // Drawing the Rectangle 
     cv::imshow("Display Image", image);
+
+    auto start = std::chrono::high_resolution_clock::now();
+    while (true) {
+        auto now = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - start);
+
+        cv::waitKey(10);
+        if (elapsed.count() >= 3000) {
+            break;
+        }
+    }
     cv::waitKey(0);
 }
 
