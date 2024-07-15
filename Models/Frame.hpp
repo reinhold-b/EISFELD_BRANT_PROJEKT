@@ -15,7 +15,6 @@ class Frame {
         std::vector<Label> m_labels; 
         GameMode mode; 
         std::chrono::steady_clock::time_point start;
-        std::time_t result;
 
         void setStart() {
             //Get current timestamp
@@ -23,6 +22,8 @@ class Frame {
         } 
 
     public:
+        double result;
+
         Frame(std::string _path, std::vector<Label> _labels) :
             m_imgPath(_path),
             m_labels(_labels),
@@ -43,10 +44,10 @@ class Frame {
 
         std::string getImgPath();
         std::vector<Label> getLabels();
-        static void onMouse(int event, int x, int y, int, void* userdata);
+        virtual void handleHit(double reactionTime);
         bool checkForHit(cv::Point p);
         virtual void show();
-        void calcReactionTime();
+        double calcReactionTime();
 };
 
 #endif //FRAME_INCLUDED

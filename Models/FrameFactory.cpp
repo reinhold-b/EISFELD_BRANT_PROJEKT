@@ -4,6 +4,7 @@
 #include <opencv2/opencv.hpp>
 #include <chrono>
 #include <string>
+#include <random>
 #include <filesystem>
 #include <map>
 #include <iostream>
@@ -110,8 +111,9 @@ int FrameFactory::walkDir(std::string path) {
 
     Frame* FrameFactory::take(GameMode mode) {
         std::cout << "Hallo" << std::endl;
+        std::random_device rd;
         std::vector<std::string> paths; 
-        std::srand(std::time(nullptr)); // use current time as seed for random generator
+        std::srand(rd()); // use current time as seed for random generator
         int random_value; 
 
         random_value = std::rand() % m_imgCount;
