@@ -5,18 +5,27 @@
 
 using namespace std;
 
+
+bool containsChar(std::string str) {
+    for (char &c : str) {
+        int i = static_cast<int>(c);
+        if (c < 48 || c > 57) return true;
+    }
+    return false;
+}
+
 Menu::Menu()
 {
     cout << "********************* KITTI Reaction Game *********************" << endl <<
             "************* by Reinhold Brant and Albert Eisfeld ************" << endl << endl <<
             "Player Name: ";
-    m_playerName = getValidName();
+    m_playerName = readValidName();
     cout << "How many images do you want to play? ";
-    m_imageCount = getValidImageCount();
+    m_imageCount = readValidImageCount();
     cout << "Which imagesequence do you chose? ";
-    m_imageSequence = getValidImageSequence();
+    m_imageSequence = readValidImageSequence();
     cout << "Which gamemode? (1: single, 2: multi) ";
-    m_gamemode = getValidGamemode();
+    m_gamemode = readValidGamemode();
 
     cout << m_playerName << endl << m_imageCount << endl << m_imageSequence << endl; //For Testing
 }
@@ -52,7 +61,7 @@ void Menu::setImageSequence(int newImageSequence)
     m_imageSequence = newImageSequence;
 }
 
-string Menu::getValidName()
+string Menu::readValidName()
 {
     string newName;
     std::cin >> newName;
@@ -68,41 +77,41 @@ string Menu::getValidName()
     return newName;
 }
 
-int Menu::getValidImageCount()
+int Menu::readValidImageCount()
 {
     int num;
-    bool isNumber = true;
-    bool isInRange = true;
+    bool isNumber = false;
     string newImageCount;
     std::cin >> newImageCount;
+
     try {
         num = std::stoi(newImageCount); //string to int
-    } catch (const std::invalid_argument& e) {
+    }  catch (const std::out_of_range& e) {
         isNumber = false;
-    } catch (const std::out_of_range& e) {
-        isInRange = false;
     }
-    while(num < 1 || num > 99 || std::cin.fail())
+
+    isNumber = !containsChar(newImageCount);
+
+    while(num < 1 || num > 99 || !isNumber)
     /*
     Upper limit can be adjusted since the imagesequences contain up to 1000 images
     */
     {
         std::cin.clear();
-        std::cout << "Invalid number of images! Make sure your number is in between 1 and 99" << std::endl;
+        std::cout << "Invalid number of images! Make sure your number is in between 1 and 99. No letters." << std::endl;
         std::cout << "New number of images: ";
         std::cin >> newImageCount;
+        isNumber = !containsChar(newImageCount);
         try {
         num = std::stoi(newImageCount); //string to int
-    } catch (const std::invalid_argument& e) {
+        } catch (const std::invalid_argument& e) {
         isNumber = false;
-    } catch (const std::out_of_range& e) {
-        isInRange = false;
-    }
+        }     
     }
     return num;
 }
 
-int Menu::getValidGamemode()
+int Menu::readValidGamemode()
 {
     int num;
     bool isNumber = true;
@@ -129,7 +138,7 @@ int Menu::getValidGamemode()
     return num;
 }
 
-string Menu::getValidImageSequence()
+string Menu::readValidImageSequence()
 {
     string newImageSeq;
     bool isNumber = true;

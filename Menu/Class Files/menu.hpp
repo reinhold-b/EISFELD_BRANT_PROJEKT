@@ -9,10 +9,10 @@ private:
     int m_imageCount;
     int m_gamemode;
     string m_imageSequence;
-    string getValidName();
-    int getValidImageCount();
-    int getValidGamemode();
-    string getValidImageSequence();
+    string readValidName();
+    int readValidImageCount();
+    int readValidGamemode();
+    string readValidImageSequence();
 public:
     Menu(string _playerName, int _imageCount, string _imageSequence, int _gamemode):
     m_playerName(_playerName),
