@@ -28,3 +28,8 @@ void MultiGameFrame::show() {
     // cv::setMouseCallback("Display Image", FrameFactory::onMouse, nullptr);
     cv::waitKey(0);
 }
+
+void MultiGameFrame::handleHit(double reactionTime) 
+{
+    MultiGameFrame::result = reactionTime;
+}

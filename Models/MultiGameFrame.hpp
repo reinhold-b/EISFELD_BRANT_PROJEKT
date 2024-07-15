@@ -7,6 +7,7 @@ class MultiGameFrame : public Frame {
     public:
     MultiGameFrame(std::string _path, std::vector<Label> _labels) : Frame(_path, _labels) {};
     void show() override;
+    void handleHit(double reactionTime) override;
 };
 
 #endif // MULTI_INCLUDED
