@@ -20,10 +20,13 @@ void Frame::handleHit(double reactionTime) {
 
 bool Frame::checkForHit(cv::Point p)
 {
-    for (const auto& i : m_labels){
+    std::vector<Label> currLabels = m_labels;
+    for (const auto& i : currLabels){
+        std::cout << i.m_type << "  --  " << i.m_frame << "  --  "  << std::endl;
+        std::cout << i.m_bbox.x << " || " << i.m_bbox.y << " - " << i.m_bbox.width << " || " << i.m_bbox.height << std::endl;
         if (i.m_bbox.contains(p) && i.m_type != "DontCare") 
         {
-            std::cout << i.m_bbox.x << " || " << i.m_bbox.y << " - " << i.m_bbox.width << " || " << i.m_bbox.height << std::endl;
+            
             return true;
         }
         

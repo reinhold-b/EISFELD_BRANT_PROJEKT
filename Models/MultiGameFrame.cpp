@@ -1,12 +1,6 @@
 #include "MultiGameFrame.hpp"
 #include "FrameFactory.hpp"
 
-// void onMouse(int event, int x, int y, int, void*){
-//     if (event == cv::EVENT_LBUTTONDOWN){
-        
-//         std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
-//     }
-// }
 
 void MultiGameFrame::show() {
     cv::Mat image; 
@@ -25,7 +19,6 @@ void MultiGameFrame::show() {
     }
     // Drawing the Rectangle 
     cv::imshow("Display Image", image);
-    // cv::setMouseCallback("Display Image", FrameFactory::onMouse, nullptr);
     cv::waitKey(0);
 }
 
