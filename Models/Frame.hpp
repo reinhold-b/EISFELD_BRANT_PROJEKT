@@ -16,13 +16,17 @@ class Frame {
         GameMode mode; 
         std::chrono::steady_clock::time_point start;
 
+    public:
+        double result;
+
         void setStart() {
             //Get current timestamp
             start = std::chrono::steady_clock::now();
         } 
 
-    public:
-        double result;
+        auto getStart() {
+            return start;
+        }
 
         Frame(std::string _path, std::vector<Label> _labels) :
             m_imgPath(_path),
@@ -45,7 +49,7 @@ class Frame {
         std::string getImgPath();
         std::vector<Label> getLabels();
         virtual void handleHit(double reactionTime);
-        bool checkForHit(cv::Point p);
+        virtual bool checkForHit(cv::Point p);
         virtual void show();
         double calcReactionTime();
 };
