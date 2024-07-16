@@ -56,5 +56,16 @@ bool MultiGameFrame::checkForHit(cv::Point p) {
 
 void MultiGameFrame::handleHit(double reactionTime) 
 {
+    auto begin = std::chrono::high_resolution_clock::now();
     MultiGameFrame::result = reactionTime;
+
+    cv::waitKey(0);
+
+    auto now = std::chrono::high_resolution_clock::now();
+    auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin);
+
+    MultiGameFrame::result += elapsed.count();
+
+    std::cout << MultiGameFrame::result << std::endl;
+
 }
