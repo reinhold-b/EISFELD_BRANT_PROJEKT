@@ -44,13 +44,6 @@ int main(){
 
     FrameFactory fac = FrameFactory(seq);
 
-    // Extractor e = Extractor(numImages, seq);
-    // std::vector<std::string> pathsToOpen = e.getImgPaths();
-    // std::vector<int> labelIndices = e.getLabelIndices();
-    // std::vector<Label> labels; 
-
-    // GUI window = GUI();
-
     std::vector<double> times;
 
     cv::imshow("Display Image", 0);
