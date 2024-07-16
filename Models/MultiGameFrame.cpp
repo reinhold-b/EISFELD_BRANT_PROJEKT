@@ -40,8 +40,20 @@ void MultiGameFrame::show() {
     thickness + 2, cv::LINE_8);
 
     cv::imshow("Display Image", image);
+        
+    begin = std::chrono::high_resolution_clock::now();
 
-    cv::waitKey(0);
+    while (result == 0 ) {
+        auto now = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin); 
+        if (elapsed.count() >= 3000) {
+            std::cout << "timeout" << std::endl;
+            result = 3000;
+            break;
+        }
+        cv::waitKey(10);
+    } 
+
 }
 
 bool MultiGameFrame::checkForHit(cv::Point p) {
@@ -65,6 +77,8 @@ void MultiGameFrame::handleHit(double reactionTime)
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin);
 
     MultiGameFrame::result += elapsed.count();
+
+    if (result > 5000) result = 5000;
 
     std::cout << MultiGameFrame::result << std::endl;
 

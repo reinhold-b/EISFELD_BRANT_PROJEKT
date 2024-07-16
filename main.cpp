@@ -13,6 +13,7 @@ void onMouse(int event, int x, int y, int, void* userdata)
     if (self->result != 0) return;
     if (event == cv::EVENT_LBUTTONDOWN)
     {
+        std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
         if (self->checkForHit(cv::Point(x, y)))
         {
             std::cout << std::endl << "Hit on: " << self << std::endl;
@@ -25,7 +26,6 @@ void onMouse(int event, int x, int y, int, void* userdata)
             self->handleHit(5000);
             std::cout << "Miss!" << std::endl;
         }   
-        std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
     }
 }
 

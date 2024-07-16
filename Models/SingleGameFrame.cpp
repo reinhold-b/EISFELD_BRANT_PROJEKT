@@ -38,6 +38,7 @@ void SingleGameFrame::show() {
         auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin); 
         if (elapsed.count() >= 3000) {
             std::cout << "timeout" << std::endl;
+            result = 3000;
             break;
         }
         cv::waitKey(10);
