@@ -21,10 +21,10 @@ public:
     m_gamemode(_gamemode) {};
     Menu(); //this method contains the GUI text
 
-    string getPlayerName();
-    int getImageCount();
-    string getImageSequence();
-    int getGamemode();
+    string getPlayerName() const;
+    int getImageCount() const;
+    string getImageSequence() const;
+    int getGamemode() const;
 
     void setPlayerName(string newPlayerName);
     void setImageCount(int newImageCount);
