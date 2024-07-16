@@ -30,32 +30,36 @@ Menu::Menu()
     cout << m_playerName << endl << m_imageCount << endl << m_imageSequence << endl; //For Testing
 }
 
-string Menu::getPlayerName()
+ string Menu::getPlayerName() const
 {
     return m_playerName;
-};
-int Menu::getImageCount()
+} 
+
+int Menu::getImageCount() const
 {
     return m_imageCount;
-};
-string Menu::getImageSequence()
+} 
+
+string Menu::getImageSequence() const
 {
     return m_imageSequence;
-};
+} 
 
-int Menu::getGamemode() 
+int Menu::getGamemode() const 
 {
     return m_gamemode;
-}
+};
 
 void Menu::setPlayerName(string newPlayerName)
 {
     m_playerName = newPlayerName;
 }
+
 void Menu::setImageCount(int newImageCount)
 {
     m_imageCount = newImageCount;
 }
+
 void Menu::setImageSequence(int newImageSequence)
 {
     m_imageSequence = newImageSequence;
