@@ -11,7 +11,7 @@ class MultiGameFrame : public Frame {
         std::srand(std::time(nullptr)); // use current time as seed for random generator
         correctBoxIndex = std::rand() % _labels.size();
     };
-    int getCorrectBoxIndex() {
+    int getCorrectBoxIndex() const {
         return correctBoxIndex;
     }
     void show() override;

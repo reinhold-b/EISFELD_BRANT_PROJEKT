@@ -36,9 +36,7 @@ class FrameFactory {
 public:
     FrameFactory();
     FrameFactory(std::string imgSeq);
-    std::vector<std::string> getImgPaths();
     std::vector<Label> getImgLabel(int i);
-    std::vector<int> getLabelIndices();
     Frame* take(GameMode mode);
 };
 
