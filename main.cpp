@@ -6,7 +6,7 @@
 #include <filesystem>
 
 
-void onMouse(int event, int x, int y, int, void* userdata)
+void onMouse(int event, int x, int y, int flags, void* userdata)
 {
     Frame* self = static_cast<Frame*>(userdata);
     // Wenn ein Ergebnis vorliegt (bereits geclickt), dann wird der Click nicht mehr registriert
