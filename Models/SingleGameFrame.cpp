@@ -22,7 +22,7 @@ void SingleGameFrame::show() {
         std::cerr << "Error: Could not open or find the image!" << std::endl;
     }
 
-    int thickness = 2; 
+    const int thickness = 2; 
 
     rectangle(image, labels[random_value].m_bbox, 
     cv::Scalar(0, 0, 255), 

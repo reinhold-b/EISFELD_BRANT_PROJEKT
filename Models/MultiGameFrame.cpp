@@ -12,7 +12,7 @@ void MultiGameFrame::show() {
         std::cerr << "Error: Could not open or find the image!" << std::endl;
     }
 
-    int thickness = 2; 
+    const int thickness = 2; 
     
     for (auto &l : MultiGameFrame::getLabels()) {
         rectangle(image, l.m_bbox, 

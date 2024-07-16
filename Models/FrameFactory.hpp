@@ -23,8 +23,8 @@
 class FrameFactory {
     int m_imgCount = 1;
     std::string m_imgSeq;
-    std::string m_labelPath = APPLE ? "./training/label_02/" : "../training/label_02/";
-    std::string m_imgPath = APPLE ? "./data_tracking_image_2/training/image_02/" : "../data_tracking_image_2/training/image_02/";
+    const std::string m_labelPath = APPLE ? "./training/label_02/" : "../training/label_02/";
+    const std::string m_imgPath = APPLE ? "./data_tracking_image_2/training/image_02/" : "../data_tracking_image_2/training/image_02/";
 
     std::vector<Label> m_labels;
 
@@ -36,9 +36,7 @@ class FrameFactory {
 public:
     FrameFactory();
     FrameFactory(std::string imgSeq);
-    std::vector<std::string> getImgPaths();
     std::vector<Label> getImgLabel(int i);
-    std::vector<int> getLabelIndices();
     Frame* take(GameMode mode);
 };
 

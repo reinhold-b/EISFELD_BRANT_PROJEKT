@@ -24,9 +24,7 @@ class Frame {
             start = std::chrono::steady_clock::now();
         } 
 
-        auto getStart() {
-            return start;
-        }
+        auto getStart() const; 
 
         Frame(std::string _path, std::vector<Label> _labels) :
             m_imgPath(_path),
@@ -46,8 +44,8 @@ class Frame {
                 calcReactionTime();
             };
 
-        std::string getImgPath();
-        std::vector<Label> getLabels();
+        std::string getImgPath() const;
+        std::vector<Label> getLabels() const;
         virtual void handleHit(double reactionTime);
         virtual bool checkForHit(cv::Point p);
         virtual void show();

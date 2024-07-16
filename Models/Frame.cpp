@@ -2,11 +2,15 @@
 
 #include "Frame.hpp"
 
-std::string Frame::getImgPath() {
+auto Frame::getStart() const {
+    return start;
+}
+
+std::string Frame::getImgPath() const {
     return m_imgPath;
 }
 
-std::vector<Label> Frame::getLabels() {
+std::vector<Label> Frame::getLabels() const {
     return m_labels;
 }
 
