@@ -7,5 +7,6 @@
 main.exe
 
 build/
+projektTest/
 CMake/
 CMakeLists.txt
