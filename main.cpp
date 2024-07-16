@@ -5,6 +5,8 @@
 #include <map>
 #include <filesystem>
 
+#define DOUBLE_BR std::endl << std::endl
+
 
 void onMouse(int event, int x, int y, int flags, void* userdata)
 {
@@ -62,7 +64,10 @@ int main(){
         avg += d;
     }
     avg /= times.size();
-    std::cout << "Durchschnitt: " << avg << std::endl;
+
+    std::cout << DOUBLE_BR << "Deine Ergebnisse " << gameMenu.getPlayerName() << DOUBLE_BR;
+    
+    std::cout << "Durchschnitt: " << avg / 1000 << " s " << std::endl;
 
     return 0;
 }
