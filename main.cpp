@@ -1,6 +1,4 @@
 #include "./Menu/Class Files/menu.hpp"
-#include "./GUI/Extractor.hpp"
-#include "./GUI/GUI.hpp"
 #include "./Models/FrameFactory.hpp"
 #include "./Models/Frame.hpp"
 

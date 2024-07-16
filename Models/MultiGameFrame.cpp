@@ -49,7 +49,6 @@ bool MultiGameFrame::checkForHit(cv::Point p) {
     Label correctLabel = currLabels[correctBoxIndex];
     if (correctLabel.m_bbox.contains(p) && correctLabel.m_type != "DontCare") 
     {
-            
         return true;
     }
     return false;
