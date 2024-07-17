@@ -8,10 +8,10 @@
 #include <chrono>
 
 /**
- * @brief Startet die SingleGameFrame Routine. 
+ * @brief Startet die SingleGameFrame Routine.
  * Ließt den Pfad des Bildes ein und zeigt das Bild an. Zeichnet die BoundingBox ein
- * die geklickt werden muss. 
- * 
+ * die geklickt werden muss.
+ *
  */
 void SingleGameFrame::show()
 {
@@ -38,10 +38,9 @@ void SingleGameFrame::show()
     waitForInput(3000, [this]()
                  { return this->result == 0; }, [this]()
                  {
-            std::cout << "timeout" << std::endl;
-            this->result = 5000; });
+            std::cout << "You're too slow! Penalty: 3s" << std::endl;
+            this->result = 3000; });
 }
-
 
 void SingleGameFrame::handleHit(double reactionTime)
 {

@@ -42,8 +42,6 @@ public:
                                                            m_labels(_labels),
                                                            mode(GameMode::singular)
     {
-        std::cout << std::endl
-                  << "Created: " << this << std::endl;
         setStart();
         calcReactionTime();
     };

@@ -45,8 +45,8 @@ void MultiGameFrame::show()
     waitForInput(3000, [this]()
                  { return this->result == 0; }, [this]()
                  {
-        std::cout << "timeout" << std::endl;
-        this->result = 5000; });
+        std::cout << "You're too slow! Penalty: 3s" << std::endl;
+        this->result = 3000; });
 }
 
 /**
