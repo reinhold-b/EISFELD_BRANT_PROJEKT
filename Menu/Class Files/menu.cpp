@@ -257,7 +257,7 @@ void Menu::finishScreen(std::vector<double> times)
     std::cout << std::endl
               << "*************************** FINISH! ***************************" << std::endl
               << "Results of: " << m_playerName << std::endl;
-    std::cout << "Your averagetime: " << avg / 1000 << " s " << std::endl
+    std::cout << "Your averagetime: " << avg / 1000 << "s" << std::endl
               << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl
               << std::endl;
 
