@@ -1,6 +1,7 @@
 #include "SingleGameFrame.hpp"
 #include "FrameFactory.hpp"
 #include "../GUI/Label.hpp"
+#include "../helper.hpp"
 
 #include <vector>
 #include <string>
@@ -29,6 +30,7 @@ void SingleGameFrame::show()
     // Drawing the Rectangle
     cv::imshow("Display Image", image);
 
+    cv::setMouseCallback("Display Image", helper::onMouse, this);
     waitForInput(3000, [this]()
                  { return this->result == 0; }, [this]()
                  {
