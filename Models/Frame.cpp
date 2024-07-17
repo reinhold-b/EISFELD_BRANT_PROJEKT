@@ -1,4 +1,5 @@
 #include <string>
+#include <functional>
 
 #include "Frame.hpp"
 
@@ -50,4 +51,34 @@ double Frame::calcReactionTime() {
 
     // 3 sek zurueckgeben wenn timeout
     return elapsed_time_ms != 0 ? elapsed_time_ms / 1000000 : 3000;
+}
+
+void Frame::drawBox(cv::Mat image, cv::Rect b, int thickness, cv::Scalar color) {
+        rectangle(image, b, 
+        color, 
+        thickness, cv::LINE_8);
+}
+
+/**
+ * @brief Wartet, solange die Funktion condition true ergibt. 
+ * Wird die Wartezti ueberschritten, wird callback ausgefuehrt. 
+ * 
+ * @param timems 
+ * @param condition 
+ * @param callback 
+ */
+void Frame::waitForInput(double timems, std::function<bool(void)> condition, std::function<void(void)> callback) {
+    auto begin = std::chrono::high_resolution_clock::now();
+    while (condition()) {
+        auto now = std::chrono::high_resolution_clock::now();
+        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin);
+
+        cv::waitKey(10);
+        if (elapsed.count() >= timems) {
+            callback();
+            break;
+        }
+    }
+
+
 }
