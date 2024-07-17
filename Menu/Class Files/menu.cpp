@@ -140,7 +140,6 @@ int Menu::readValidImageCount()
     return num;
 }
 
-
 /// @brief reads userinputs for m_gamemode until they are correct
 /// @return correct m_gamemode (1 || 2)
 int Menu::readValidGamemode()

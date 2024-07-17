@@ -12,13 +12,13 @@ private:
     int m_gamemode;
     string m_imageSequence;
 
-    //readValid... methods are for needed for false input handling
+    // readValid... methods are for needed for false input handling
     string readValidName();
     int readValidImageCount();
     int readValidGamemode();
     string readValidImageSequence();
 
-    //friend classes are needed for testing in test.cpp
+    // friend classes are needed for testing in test.cpp
     friend class ProjektTest_ValidateGamemodeCorrectly_Test;
     friend class ProjektTest_ValidateImagesequenceCorrectly_Test;
 
