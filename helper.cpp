@@ -20,6 +20,7 @@ namespace Helper
             {
                 // 5 sek strafzeit
                 self->handleHit(5000);
+                std::cout << "Knapp daneben ist auch vorbei! Penalty: 5s" << std::endl;
             }
         }
     }
