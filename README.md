@@ -41,4 +41,4 @@ Sie ist für das `SingleGameFrame` und das `MultiGameFrame` aus `Frame` polymorp
 
 ### FrameFactory
 
-Die FrameFactory stellt in der `main()` Frames je nach Spielmodus zur Verfügung. Sie wählt zufällig Bilder aus der ausgewählten Sequenz aus und konstruiiert das Frame mit den dazugehörigen Attributen wie Dateipfad und Labels.
+Die FrameFactory stellt in der `main()` Frames je nach Spielmodus zur Verfügung. Sie wählt zufällig Bilder aus der ausgewählten Sequenz aus und konstruiert das Frame mit den dazugehörigen Attributen wie Dateipfad und Labels.
