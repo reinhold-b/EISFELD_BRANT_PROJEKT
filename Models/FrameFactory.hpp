@@ -11,16 +11,15 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-#include "../GUI/Label.hpp"  // Assuming you have a Label.hpp file#
+#include "../GUI/Label.hpp" // Assuming you have a Label.hpp file#
 #ifdef __APPLE__
-#define APPLE true 
+#define APPLE true
 #else
 #define APPLE false
 #endif
 
-
-
-class FrameFactory {
+class FrameFactory
+{
     int m_imgCount = 1;
     std::string m_imgSeq;
     const std::string m_labelPath = APPLE ? "./training/label_02/" : "../training/label_02/";
@@ -33,12 +32,13 @@ class FrameFactory {
     int open();
     int walkDir(std::string path);
 
-    friend class ProjektTest_buildImageCorrectly_Test; 
+    friend class ProjektTest_buildImageCorrectly_Test;
+
 public:
     FrameFactory();
     FrameFactory(std::string imgSeq);
     std::vector<Label> getImgLabel(int i);
-    Frame* take(GameMode mode);
+    Frame *take(GameMode mode);
 };
 
-#endif //FACTORY_INCLUDED
+#endif // FACTORY_INCLUDED

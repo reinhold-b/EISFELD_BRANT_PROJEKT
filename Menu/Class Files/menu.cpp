@@ -5,20 +5,23 @@
 
 using namespace std;
 
-
-bool containsChar(std::string str) {
-    for (char &c : str) {
+bool containsChar(std::string str)
+{
+    for (char &c : str)
+    {
         int i = static_cast<int>(c);
-        if (c < 48 || c > 57) return true;
+        if (c < 48 || c > 57)
+            return true;
     }
     return false;
 }
 
 Menu::Menu()
 {
-    cout << "********************* KITTI Reaction Game *********************" << endl <<
-            "************* by Reinhold Brant and Albert Eisfeld ************" << endl << endl <<
-            "Player Name: ";
+    cout << "********************* KITTI Reaction Game *********************" << endl
+         << "************* by Reinhold Brant and Albert Eisfeld ************" << endl
+         << endl
+         << "Player Name: ";
     m_playerName = readValidName();
     cout << "How many images do you want to play? ";
     m_imageCount = readValidImageCount();
@@ -27,25 +30,27 @@ Menu::Menu()
     cout << "Which gamemode? (1: single, 2: multi) ";
     m_gamemode = readValidGamemode();
 
-    cout << m_playerName << endl << m_imageCount << endl << m_imageSequence << endl; //For Testing
+    cout << m_playerName << endl
+         << m_imageCount << endl
+         << m_imageSequence << endl; // For Testing
 }
 
- string Menu::getPlayerName() const
+string Menu::getPlayerName() const
 {
     return m_playerName;
-} 
+}
 
 int Menu::getImageCount() const
 {
     return m_imageCount;
-} 
+}
 
 string Menu::getImageSequence() const
 {
     return m_imageSequence;
-} 
+}
 
-int Menu::getGamemode() const 
+int Menu::getGamemode() const
 {
     return m_gamemode;
 };
@@ -69,15 +74,15 @@ string Menu::readValidName()
 {
     string newName;
     std::cin >> newName;
-    
-        while(std::cin.fail()) //checks for weird ASCIIs
-        {
-            std::cin.clear(); // Clear the error flags
-            std::cout << "Invalid name! Make sure your Playername doesn't contain spaces ";
-            std::cout << "or letters that are not part of the english alphabet. " << std::endl;
-            std::cout << "New Playername: ";
-            std::cin >> newName;
-        }
+
+    while (std::cin.fail()) // checks for weird ASCIIs
+    {
+        std::cin.clear(); // Clear the error flags
+        std::cout << "Invalid name! Make sure your Playername doesn't contain spaces ";
+        std::cout << "or letters that are not part of the english alphabet. " << std::endl;
+        std::cout << "New Playername: ";
+        std::cin >> newName;
+    }
     return newName;
 }
 
@@ -88,33 +93,43 @@ int Menu::readValidImageCount()
     bool isInRange = true;
     string newImageCount;
     std::cin >> newImageCount;
-    try {
-        num = std::stoi(newImageCount); //string to int
-    } catch (const std::invalid_argument& e) {
+    try
+    {
+        num = std::stoi(newImageCount); // string to int
+    }
+    catch (const std::invalid_argument &e)
+    {
         isNumber = false;
-    } catch (const std::out_of_range& e) {
+    }
+    catch (const std::out_of_range &e)
+    {
         isNumber = false;
     }
 
     isNumber = !containsChar(newImageCount);
 
-    while(num < 1 || num > 99 || cin.fail() || !isNumber)
+    while (num < 1 || num > 99 || cin.fail() || !isNumber)
     /*
     Upper limit can be adjusted since the imagesequences contain up to 1000 images
     */
     {
-       std::cin.clear();
+        std::cin.clear();
         std::cout << "Invalid number of images! Make sure your number is in between 1 and 99. No letters." << std::endl;
         std::cout << "New number of images: ";
         std::cin >> newImageCount;
         isNumber = !containsChar(newImageCount);
-        try {
-        num = std::stoi(newImageCount); //string to int
-        } catch (const std::invalid_argument& e) {
-        isNumber = false;
-        } catch (const std::out_of_range& e) {
-        isInRange = false;
-    }
+        try
+        {
+            num = std::stoi(newImageCount); // string to int
+        }
+        catch (const std::invalid_argument &e)
+        {
+            isNumber = false;
+        }
+        catch (const std::out_of_range &e)
+        {
+            isInRange = false;
+        }
     }
     return num;
 }
@@ -125,24 +140,30 @@ int Menu::readValidGamemode()
     bool isNumber = true;
     string newGamemode;
     std::cin >> newGamemode;
-    try {
-        num = std::stoi(newGamemode); //string to int
-    } catch (const std::invalid_argument& e) {
+    try
+    {
+        num = std::stoi(newGamemode); // string to int
+    }
+    catch (const std::invalid_argument &e)
+    {
         isNumber = false;
     }
     isNumber = !containsChar(newGamemode);
-    while(num < 1 || num > 2 || std::cin.fail() || !isNumber)
+    while (num < 1 || num > 2 || std::cin.fail() || !isNumber)
     {
         std::cin.clear();
         std::cout << "Invalid input! Please enter [1] or [2] for your desired gamemode! " << std::endl;
         std::cout << "New gamemode: ";
         std::cin >> newGamemode;
         isNumber = true;
-        try {
-        num = std::stoi(newGamemode); //string to int
-    } catch (const std::invalid_argument& e) {
-        isNumber = false;
-    }
+        try
+        {
+            num = std::stoi(newGamemode); // string to int
+        }
+        catch (const std::invalid_argument &e)
+        {
+            isNumber = false;
+        }
     }
     return num;
 }
@@ -154,39 +175,48 @@ string Menu::readValidImageSequence()
     bool isInRange = true;
     int num;
     std::cin >> newImageSeq;
-    try {
-        num = std::stoi(newImageSeq); //string to int
-    } catch (const std::invalid_argument& e) {
+    try
+    {
+        num = std::stoi(newImageSeq); // string to int
+    }
+    catch (const std::invalid_argument &e)
+    {
         isNumber = false;
-    } catch (const std::out_of_range& e) {
+    }
+    catch (const std::out_of_range &e)
+    {
         isInRange = false;
     }
-        while(newImageSeq.length() != 4 ||
-        newImageSeq[0] != '0' ||
-        newImageSeq[1] != '0' ||
-        num < 0 ||
-        num > 20||
-        !isNumber ||
-        !isInRange ||
-        std::cin.fail()) //Imagesequence needs to match the filefolder name
+    while (newImageSeq.length() != 4 ||
+           newImageSeq[0] != '0' ||
+           newImageSeq[1] != '0' ||
+           num < 0 ||
+           num > 20 ||
+           !isNumber ||
+           !isInRange ||
+           std::cin.fail()) // Imagesequence needs to match the filefolder name
+    {
+        std::cin.clear(); // Clear the error flags
+        std::cout << "Invalid imagesequence! Make sure to type in a number inbetween 0 and 20 and ";
+        std::cout << "use exactly 4 digits (e.g. '0000' or '0017')." << std::endl;
+        std::cout << "New imagesequence: ";
+        std::cin >> newImageSeq;
+        isNumber = true;
+        isInRange = true;
+        try
         {
-            std::cin.clear(); // Clear the error flags
-            std::cout << "Invalid imagesequence! Make sure to type in a number inbetween 0 and 20 and ";
-            std::cout << "use exactly 4 digits (e.g. '0000' or '0017')." << std::endl;
-            std::cout << "New imagesequence: ";
-            std::cin >> newImageSeq;
-            isNumber = true;
-            isInRange = true;
-            try {
-                num = std::stoi(newImageSeq); //string to int
-            } catch (const std::invalid_argument& e) {
-                isNumber = false;
-            } catch (const std::out_of_range& e) {
-                isInRange = false;
-            }
+            num = std::stoi(newImageSeq); // string to int
         }
+        catch (const std::invalid_argument &e)
+        {
+            isNumber = false;
+        }
+        catch (const std::out_of_range &e)
+        {
+            isInRange = false;
+        }
+    }
     return newImageSeq;
 }
 
-
-#endif //MENU_CPP
+#endif // MENU_CPP
