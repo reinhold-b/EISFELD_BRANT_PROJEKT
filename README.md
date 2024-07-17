@@ -12,11 +12,11 @@ Das Projekt enthält außerdem Unit-Tests, die mit Google Test realisiert werden
 ## Implementierung
 
 ### Frame
-`
+
 Der Hauptaufbau des Projekts basiert auf der `Frame` Klasse, die, wie der Name verrät, eine Art "Bilderrahmen" für die
 einzelnen Bilder darstellt. Die `Frame` Klasse besitzt alle nötigen Attribute, die das Bild beschreiben, wie dessen Pfad
 und die Bounding Boxes, die darauf angezeigt werden. Für weitere Infos zum Frame kann das UML Diagramm "uml1.png" konsultiert werden.
-`
+
 Da zwei Spielmodi verfügbar sind, sind zwei weitere Klassen von `Frame` abgeleitet: `SingleGameFrame` und `MultiGameFrame`.
 
 ### SingleGameFrame
