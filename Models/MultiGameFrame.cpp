@@ -4,58 +4,49 @@
 #include <chrono>
 
 
+/**
+ * @brief 
+ * 
+ */
 void MultiGameFrame::show() {
     std::vector<Label> labels = MultiGameFrame::getLabels();
     cv::Mat image; 
     image = cv::imread(MultiGameFrame::getImgPath());
+
     if (image.empty()) {
         std::cerr << "Error: Could not open or find the image!" << std::endl;
     }
 
     const int thickness = 2; 
-    
-    for (auto &l : MultiGameFrame::getLabels()) {
-        rectangle(image, l.m_bbox, 
-        cv::Scalar(255, 0, 0), 
-        thickness, cv::LINE_8);
 
+    for (auto &l : Frame::getLabels()) {
+        drawBox(image, l.m_bbox, thickness, cv::Scalar(255, 0, 0));
     }
-    // Drawing the Rectangle 
+ 
+   // Drawing the Rectangle 
     cv::imshow("Display Image", image);
 
-    auto begin = std::chrono::high_resolution_clock::now();
-    while (true) {
-        auto now = std::chrono::high_resolution_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin);
-
-        cv::waitKey(10);
-        if (elapsed.count() >= 3000) {
-            break;
-        }
-    }
+    waitForInput(3000, [](){return true;}, [](){});
 
     setStart();
-    rectangle(image, labels[getCorrectBoxIndex()].m_bbox, 
-    cv::Scalar(0, 0, 255), 
-    thickness + 2, cv::LINE_8);
+    drawBox(image, labels[getCorrectBoxIndex()].m_bbox, thickness + 2, cv::Scalar(0, 0, 255));
 
     cv::imshow("Display Image", image);
         
-    begin = std::chrono::high_resolution_clock::now();
-
-    while (result == 0 ) {
-        auto now = std::chrono::high_resolution_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin); 
-        if (elapsed.count() >= 3000) {
-            std::cout << "timeout" << std::endl;
-            result = 3000;
-            break;
-        }
-        cv::waitKey(10);
-    } 
+    waitForInput(3000, [this](){return this->result == 0;}, [this]() {
+        std::cout << "timeout" << std::endl;
+        this->result = 5000;
+    });
 
 }
 
+/**
+ * @brief  
+ * 
+ * @param p 
+ * @return true 
+ * @return false 
+ */
 bool MultiGameFrame::checkForHit(cv::Point p) {
     std::vector<Label> currLabels = getLabels();
     Label correctLabel = currLabels[correctBoxIndex];

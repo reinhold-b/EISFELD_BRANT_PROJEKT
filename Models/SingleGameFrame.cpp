@@ -7,7 +7,6 @@
 #include <chrono>
 
 
-
 void SingleGameFrame::show() {
     std::vector<Label> labels = SingleGameFrame::getLabels();
     std::vector<std::string> paths; 
@@ -24,25 +23,15 @@ void SingleGameFrame::show() {
 
     const int thickness = 2; 
 
-    rectangle(image, labels[random_value].m_bbox, 
-    cv::Scalar(0, 0, 255), 
-    thickness, cv::LINE_8);
+    drawBox(image, labels[random_value].m_bbox, thickness, cv::Scalar(0, 0, 255));
 
     // Drawing the Rectangle 
     cv::imshow("Display Image", image);
 
-    auto begin = std::chrono::high_resolution_clock::now();
-
-    while (result == 0 ) {
-        auto now = std::chrono::high_resolution_clock::now();
-        auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(now - begin); 
-        if (elapsed.count() >= 3000) {
+    waitForInput(3000, [this](){return this->result == 0;}, [this](){
             std::cout << "timeout" << std::endl;
-            result = 3000;
-            break;
-        }
-        cv::waitKey(10);
-    } 
+            this->result = 5000;
+    });
 }
 
 void SingleGameFrame::handleHit(double reactionTime) 
