@@ -1,6 +1,8 @@
 #include "helper.hpp"
+#include <random>
 
-namespace helper {
+namespace Helper
+{
     void onMouse(int event, int x, int y, int flags, void *userdata)
     {
         Frame *self = static_cast<Frame *>(userdata);
@@ -24,5 +26,13 @@ namespace helper {
                 std::cout << "Miss!" << std::endl;
             }
         }
+    }
+
+    int randomNumber(int start, int end)
+    {
+        std::srand(std::time(nullptr)); // use current time as seed for random generator
+        int random_value;
+        random_value = std::rand() % end;
+        return random_value;
     }
 }

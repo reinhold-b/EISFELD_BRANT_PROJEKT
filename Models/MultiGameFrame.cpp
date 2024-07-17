@@ -29,13 +29,12 @@ void MultiGameFrame::show()
     // Drawing the Rectangle
     cv::imshow("Display Image", image);
 
-    waitForInput(3000, []()
+    waitForInput(Helper::randomNumber(0, 3000), []()
                  { return true; }, []() {});
 
-
     setStart();
-    
-    cv::setMouseCallback("Display Image", helper::onMouse, this);
+
+    cv::setMouseCallback("Display Image", Helper::onMouse, this);
 
     drawBox(image, labels[getCorrectBoxIndex()].m_bbox, thickness + 2, cv::Scalar(0, 0, 255));
 
