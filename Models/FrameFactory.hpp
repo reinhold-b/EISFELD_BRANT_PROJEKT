@@ -33,6 +33,7 @@ class FrameFactory {
     int open();
     int walkDir(std::string path);
 
+    friend class ProjektTest_buildImageCorrectly_Test; 
 public:
     FrameFactory();
     FrameFactory(std::string imgSeq);

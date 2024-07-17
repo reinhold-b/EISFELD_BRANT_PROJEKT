@@ -13,6 +13,8 @@ private:
     int readValidImageCount();
     int readValidGamemode();
     string readValidImageSequence();
+    friend class ProjektTest_ValidateGamemodeCorrectly_Test;
+    friend class ProjektTest_ValidateImagesequenceCorrectly_Test;
 public:
     Menu(string _playerName, int _imageCount, string _imageSequence, int _gamemode):
     m_playerName(_playerName),
