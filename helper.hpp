@@ -4,9 +4,10 @@
 #include <opencv2/opencv.hpp>
 #include "./Models/Frame.hpp"
 
-namespace helper
+namespace Helper
 {
-    void onMouse(int event, int x, int y, int flags, void *userdata); 
+    void onMouse(int event, int x, int y, int flags, void *userdata);
+    int randomNumber(int start, int end);
 }
 
 #endif // HELPER_INCLUDED
