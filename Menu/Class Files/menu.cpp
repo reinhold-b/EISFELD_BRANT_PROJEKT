@@ -2,6 +2,8 @@
 #define MENU_CPP
 #include "menu.hpp"
 #include <iostream>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
@@ -217,6 +219,42 @@ string Menu::readValidImageSequence()
         }
     }
     return newImageSeq;
+}
+
+
+void Menu::finishScreen(std::vector<double> times)
+{
+    struct timeImgPair{
+        //necassary for printing out the 3 best times with the imagenumber
+        double time;
+        int imgNr;
+    };
+
+    double avg = 0;
+
+    for (double &d : times)
+    {
+        avg += d;
+    }
+    avg /= times.size();
+    std::vector<timeImgPair> timesWithImg;
+    int c = 1;
+    for (double &d : times)
+    {
+        timesWithImg.push_back({d,c});
+        c++;
+    }
+
+    std::sort(timesWithImg.begin(), timesWithImg.end(), [](timeImgPair left, timeImgPair right){return left.time < right.time;});
+    
+    std::cout << std::endl << "Results of: " << m_playerName << std::endl;
+    std::cout   << "Your averagetime: " << avg / 1000 << " s " << std::endl
+                << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl;
+    
+    for (size_t i = 0; i < std::min<size_t>(3, timesWithImg.size()); ++i) {
+        std::cout << timesWithImg[i].time << " s\t at image Nr." << timesWithImg[i].imgNr << std::endl; 
+    }
+    
 }
 
 #endif // MENU_CPP

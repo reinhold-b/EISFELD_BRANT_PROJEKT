@@ -1,6 +1,7 @@
 #ifndef MENU_HPP_INCLUDED
 #define MENU_HPP_INCLUDED
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Menu
@@ -36,6 +37,8 @@ public:
     void setPlayerName(string newPlayerName);
     void setImageCount(int newImageCount);
     void setImageSequence(int newImageSequence);
+
+    void finishScreen(std::vector<double> times);
 
     ~Menu(){};
 };
