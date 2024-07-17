@@ -1,5 +1,6 @@
 #include "MultiGameFrame.hpp"
 #include "FrameFactory.hpp"
+#include "../helper.hpp"
 
 #include <chrono>
 
@@ -31,7 +32,11 @@ void MultiGameFrame::show()
     waitForInput(3000, []()
                  { return true; }, []() {});
 
+
     setStart();
+    
+    cv::setMouseCallback("Display Image", helper::onMouse, this);
+
     drawBox(image, labels[getCorrectBoxIndex()].m_bbox, thickness + 2, cv::Scalar(0, 0, 255));
 
     cv::imshow("Display Image", image);
