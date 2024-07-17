@@ -28,6 +28,13 @@ void Frame::handleHit(double reactionTime)
     return;
 }
 
+/**
+ * @brief Prüft, ob der Punkt eines Klicks innerhalb der richtigen BoundingBox war. 
+ * 
+ * @param p 
+ * @return true 
+ * @return false 
+ */
 bool Frame::checkForHit(cv::Point p)
 {
     std::vector<Label> currLabels = m_labels;
@@ -44,6 +51,12 @@ bool Frame::checkForHit(cv::Point p)
     return false;
 }
 
+/**
+ * @brief Errechnet aus der im Frame gespeicherten Startzeit die Differenz, die als
+ * Reaktionszeit angenommen wird. 
+ * 
+ * @return double 
+ */
 double Frame::calcReactionTime()
 {
     // Get current timestamp

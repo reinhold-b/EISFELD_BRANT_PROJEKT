@@ -14,6 +14,13 @@
 #include "MultiGameFrame.hpp"
 #include "SingleGameFrame.hpp"
 
+/**
+ * @brief Konstruiert aus der Nummer des Bildes,
+ * das angezeigt werden soll, den Pfad zum Bild.
+ *
+ * @param loopIndex
+ * @return std::string
+ */
 std::string FrameFactory::buildImageName(int loopIndex)
 {
     std::string paddingZeros = "";
@@ -62,6 +69,11 @@ std::vector<Label> FrameFactory::loadLabelsFromFile(std::string filename)
     return labels;
 }
 
+/**
+ * @brief Initialisiert die FrameFactory mit den gelesenen Labels.
+ *
+ * @return int
+ */
 int FrameFactory::open()
 {
     // reading labels (GT Boxes) from KITTI Dataset
@@ -72,6 +84,12 @@ int FrameFactory::open()
     return 0;
 }
 
+/**
+ * @brief Zählt die Anzahl der Dateien innerhalb des Ordners der Sequenz.
+ *
+ * @param path
+ * @return int
+ */
 int FrameFactory::walkDir(std::string path)
 {
     int file_count = 0;
@@ -106,11 +124,12 @@ FrameFactory::FrameFactory(std::string imgSeq) : m_imgSeq(imgSeq)
     walkDir(m_imgPath + m_imgSeq + "/");
 }
 
-// Get current timestamp
-//  auto now = std::chrono::system_clock::now();
-//  std::time_t now_time_t = std::chrono::system_clock::to_time_t(now);
-//  std::cout << "Current time: " << std::ctime(&now_time_t) << std::endl;
-
+/**
+ * @brief Lädt die Labels zu dem Bild, was gespielt wird.
+ *
+ * @param i
+ * @return std::vector<Label>
+ */
 std::vector<Label> FrameFactory::getImgLabel(int i)
 {
     std::vector<Label> labelsTToReturn;
@@ -122,9 +141,16 @@ std::vector<Label> FrameFactory::getImgLabel(int i)
     return labelsTToReturn;
 }
 
+/**
+ * @brief "Fabriziert" ein neues Frame. Das Frame wird mit den nötigen Startwerten
+ * wie Bildpfad, Labels intialisiert. Je nachdem, was für ein Spielmodus gespielt wird, wird
+ * ein entsprechendes Frame returnt.
+ *
+ * @param mode
+ * @return Frame*
+ */
 Frame *FrameFactory::take(GameMode mode)
 {
-    std::cout << "Hallo" << std::endl;
     std::random_device rd;
     std::vector<std::string> paths;
     std::srand(rd()); // use current time as seed for random generator

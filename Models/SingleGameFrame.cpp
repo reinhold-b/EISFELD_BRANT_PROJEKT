@@ -7,6 +7,12 @@
 #include <string>
 #include <chrono>
 
+/**
+ * @brief Startet die SingleGameFrame Routine. 
+ * Ließt den Pfad des Bildes ein und zeigt das Bild an. Zeichnet die BoundingBox ein
+ * die geklickt werden muss. 
+ * 
+ */
 void SingleGameFrame::show()
 {
     std::vector<Label> labels = SingleGameFrame::getLabels();
@@ -35,6 +41,7 @@ void SingleGameFrame::show()
             std::cout << "timeout" << std::endl;
             this->result = 5000; });
 }
+
 
 void SingleGameFrame::handleHit(double reactionTime)
 {
