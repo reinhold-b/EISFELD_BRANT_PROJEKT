@@ -28,7 +28,7 @@ protected:
     void drawBox(cv::Mat image, cv::Rect b, int thickness, cv::Scalar color);
 
 public:
-    double result;
+    double result = 0;
 
     void setStart()
     {
