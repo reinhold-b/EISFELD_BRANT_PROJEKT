@@ -20,7 +20,10 @@ bool containsChar(std::string str)
 
 Menu::Menu()
 {
-    cout << "********************* KITTI Reaction Game *********************" << endl
+    cout << endl
+         << endl
+         << endl
+         << "********************* KITTI Reaction Game *********************" << endl
          << "************* by Reinhold Brant and Albert Eisfeld ************" << endl
          << endl
          << "Player Name: ";
@@ -31,10 +34,6 @@ Menu::Menu()
     m_imageSequence = readValidImageSequence();
     cout << "Which gamemode? (1: single, 2: multi) ";
     m_gamemode = readValidGamemode();
-
-    cout << m_playerName << endl
-         << m_imageCount << endl
-         << m_imageSequence << endl; // For Testing
 }
 
 string Menu::getPlayerName() const
@@ -256,14 +255,15 @@ void Menu::finishScreen(std::vector<double> times)
     std::sort(timesWithImg.begin(), timesWithImg.end(), [](timeImgPair left, timeImgPair right)
               { return left.time < right.time; });
     std::cout << std::endl
-              << "*************************** FINISH! ***************************"
+              << "*************************** FINISH! ***************************" << std::endl
               << "Results of: " << m_playerName << std::endl;
     std::cout << "Your averagetime: " << avg / 1000 << " s " << std::endl
-              << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl << std::endl;
+              << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl
+              << std::endl;
 
     for (size_t i = 0; i < std::min<size_t>(3, timesWithImg.size()); ++i)
     {
-        std::cout << timesWithImg[i].time << " s at image Nr." << timesWithImg[i].imgNr << std::endl;
+        std::cout << "> " << timesWithImg[i].time << "ms at image Nr." << timesWithImg[i].imgNr << std::endl;
     }
 }
 

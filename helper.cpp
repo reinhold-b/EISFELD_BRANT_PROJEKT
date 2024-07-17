@@ -11,11 +11,8 @@ namespace Helper
             return;
         if (event == cv::EVENT_LBUTTONDOWN)
         {
-            std::cout << "Lbutton down at x: " << x << " and y: " << y << std::endl;
             if (self->checkForHit(cv::Point(x, y)))
             {
-                std::cout << std::endl
-                          << "Hit on: " << self << std::endl;
                 double r = self->calcReactionTime();
                 self->handleHit(r);
             }
@@ -23,7 +20,6 @@ namespace Helper
             {
                 // 5 sek strafzeit
                 self->handleHit(5000);
-                std::cout << "Miss!" << std::endl;
             }
         }
     }

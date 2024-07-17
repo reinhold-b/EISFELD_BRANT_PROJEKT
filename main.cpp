@@ -8,7 +8,6 @@
 #define DOUBLE_BR std::endl \
                       << std::endl
 
-
 int main()
 {
     Menu gameMenu = Menu();
@@ -36,7 +35,6 @@ int main()
     {
         frame = fac.take(gamemode);
         (*frame).show();
-        std::cout << "Reaction Time: " << (*frame).result << std::endl;
         times.push_back(frame->result);
     }
     gameMenu.finishScreen(times);
