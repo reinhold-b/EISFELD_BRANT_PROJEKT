@@ -3,7 +3,7 @@
 ## Starten
 
 Um das Spiel auf einer Windows Machine auszuführen, muss die CMakeLists.txt in der root des Projekts liegen 
-(ist von Haus aus der Fall) und die CMake Tools Extension von Microsoft und die CMake Extension von twxs installiert sein.
+(ist von Haus aus der Fall) und die CMake Tools Extension von Microsoft, als auch die CMake Extension von twxs installiert sein.
 
 Nun VSCode einmal neu starten und unten links in der Toolbar das Projekt builden und ausführen.
 
