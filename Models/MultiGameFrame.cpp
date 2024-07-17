@@ -88,6 +88,4 @@ void MultiGameFrame::handleHit(double reactionTime)
 
     if (result > 5000)
         result = 5000;
-
-    std::cout << MultiGameFrame::result << std::endl;
 }
