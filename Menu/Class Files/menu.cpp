@@ -72,6 +72,8 @@ void Menu::setImageSequence(int newImageSequence)
     m_imageSequence = newImageSequence;
 }
 
+/// @brief reads userinputs for m_playername until they are correct
+/// @return correct Playername
 string Menu::readValidName()
 {
     string newName;
@@ -88,6 +90,8 @@ string Menu::readValidName()
     return newName;
 }
 
+/// @brief reads userinputs for m_imagecount until they are correct
+/// @return correct m_imagecount (1-99)
 int Menu::readValidImageCount()
 {
     int num;
@@ -136,6 +140,9 @@ int Menu::readValidImageCount()
     return num;
 }
 
+
+/// @brief reads userinputs for m_gamemode until they are correct
+/// @return correct m_gamemode (1 || 2)
 int Menu::readValidGamemode()
 {
     int num;
@@ -170,6 +177,8 @@ int Menu::readValidGamemode()
     return num;
 }
 
+/// @brief reads userinputs for m_imagesequence until they are correctly formated
+/// @return correct m_imagesequence e.g. "0014", "0001"
 string Menu::readValidImageSequence()
 {
     string newImageSeq;
