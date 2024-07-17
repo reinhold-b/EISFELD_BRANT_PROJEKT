@@ -1,6 +1,7 @@
 #include "SingleGameFrame.hpp"
 #include "FrameFactory.hpp"
 #include "../GUI/Label.hpp"
+#include "../helper.hpp"
 
 #include <vector>
 #include <string>
@@ -11,10 +12,6 @@ void SingleGameFrame::show()
     std::vector<Label> labels = SingleGameFrame::getLabels();
     std::vector<std::string> paths;
 
-    std::srand(std::time(nullptr)); // use current time as seed for random generator
-    int random_value;
-    random_value = std::rand() % labels.size();
-
     cv::Mat image;
     image = cv::imread(SingleGameFrame::getImgPath());
     if (image.empty())
@@ -24,11 +21,14 @@ void SingleGameFrame::show()
 
     const int thickness = 2;
 
+    int random_value = Helper::randomNumber(0, labels.size());
+
     drawBox(image, labels[random_value].m_bbox, thickness, cv::Scalar(0, 0, 255));
 
     // Drawing the Rectangle
     cv::imshow("Display Image", image);
 
+    cv::setMouseCallback("Display Image", Helper::onMouse, this);
     waitForInput(3000, [this]()
                  { return this->result == 0; }, [this]()
                  {
