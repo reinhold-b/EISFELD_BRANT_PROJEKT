@@ -5,7 +5,9 @@
 #include <chrono>
 
 /**
- * @brief
+ * @brief Startet die Anzeigeroutine des MultiFrameGame.
+ * Kuemmert sich um die Zeitverzögerung bis zum Anzeigen der roten Box
+ * und den Timeout.
  *
  */
 void MultiGameFrame::show()
@@ -48,7 +50,8 @@ void MultiGameFrame::show()
 }
 
 /**
- * @brief
+ * @brief Prüft für das MultiGameFrame, ob der Klick innerhalb der BoundingBox liegt
+ * die getroffen werden muss.
  *
  * @param p
  * @return true
@@ -65,6 +68,12 @@ bool MultiGameFrame::checkForHit(cv::Point p)
     return false;
 }
 
+/**
+ * @brief Handlet Klicks im Frame. Es wird die Zeit nach Start des Frames gemessen und
+ * in dessen result-Attribut gespeichert.
+ *
+ * @param reactionTime
+ */
 void MultiGameFrame::handleHit(double reactionTime)
 {
     auto begin = std::chrono::high_resolution_clock::now();
