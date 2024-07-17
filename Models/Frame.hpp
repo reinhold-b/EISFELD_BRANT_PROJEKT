@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 #include <chrono>
+#include <functional>
+#include <map>
 
 #include "../GUI/Label.hpp"
 
@@ -15,6 +17,11 @@ class Frame {
         std::vector<Label> m_labels; 
         GameMode mode; 
         std::chrono::steady_clock::time_point start;
+
+
+    protected:
+        void waitForInput(double timeMs, std::function<bool(void)> condition, std::function<void(void)> callback );
+        void drawBox(cv::Mat image, cv::Rect b, int thickness, cv::Scalar color);
 
     public:
         double result;
