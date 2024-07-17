@@ -79,7 +79,6 @@ int FrameFactory::open()
     // reading labels (GT Boxes) from KITTI Dataset
     std::string pathToLabelFile = m_labelPath + m_imgSeq + ".txt";
     m_labels = loadLabelsFromFile(pathToLabelFile);
-    std::cout << "numberOfLabels: " << m_labels.size() << std::endl;
 
     return 0;
 }
