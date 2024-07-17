@@ -2,12 +2,12 @@
 
 ## Starten
 
-Um das Spiel auf einer Windows Machine auszuführen, muss die CMakeLists.txt in der root des Projekts liegen 
+Um das Spiel auf einer Windows Machine auszuführen, muss die CMakeLists.txt in der root des Projekts liegen
 (ist von Haus aus der Fall) und die CMake Tools Extension von Microsoft, als auch die CMake Extension von twxs installiert sein.
 
-Nun VSCode einmal neu starten und unten links in der Toolbar das Projekt builden und ausführen.
+Nun VSCode einmal neu starten und unten in der Toolbar das Projekt bauen mit dem button Build, dann ausführen.
 
-Das Projekt enthält außerdem Unit-Tests, die mit Google Test realisiert werden. Um diese auszuführen, muss in der Toolbar unten links auf das Reagenzglassymbol geklickt werden.
+Das Projekt enthält außerdem Unit-Tests, die mit Google Test realisiert werden. Um diese auszuführen, muss in der Toolbar links auf das Reagenzglassymbol geklickt werden. Anschließend öffnet sich ein Reiter mit einem Test, der alle Subtests ausführt. Deren Bestehen wird im Terminal ausgegeben.
 
 ## Implementierung
 
@@ -21,7 +21,7 @@ Da zwei Spielmodi verfügbar sind, sind zwei weitere Klassen von `Frame` abgelei
 
 ### SingleGameFrame
 
-Beim SingleGame wird nur eine Box angezeigt, die so schnell wie möglich angeklickt werden muss. 
+Beim SingleGame wird nur eine Box angezeigt, die so schnell wie möglich angeklickt werden muss.
 Der ‘SingleGameFrame‘ unterscheidet sich dabei nur in der `show()` Methode, was folgend im Vergleich erläutert wird.
 
 ### MultiGameFrame
@@ -29,6 +29,7 @@ Der ‘SingleGameFrame‘ unterscheidet sich dabei nur in der `show()` Methode, 
 Im MultiGame werden mehrere BBs gleichzeitig angezeigt. Nach einer zufälligen Zeit muss eine angeklickt werden.
 
 Die `show()` Methode wird auf jedes Frame in der `main()` aufgerufen:
+
 ```cpp
     for (int i = 0; i < numImages; i++)
     {
@@ -37,6 +38,7 @@ Die `show()` Methode wird auf jedes Frame in der `main()` aufgerufen:
         times.push_back(frame->result);
     }
 ```
+
 Sie ist für das `SingleGameFrame` und das `MultiGameFrame` aus `Frame` polymorph und unterscheidet sich unter anderem dadurch, dass sie für das eine z.B. Verzögerungen vor dem Anzeigen der zu drückenden Box realisiert und beim anderen schlichtweg nur das Frame (Bild) selbst anzeigt.
 
 ### FrameFactory
