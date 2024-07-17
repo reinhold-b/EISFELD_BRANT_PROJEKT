@@ -5,9 +5,6 @@
 #include <map>
 #include <filesystem>
 
-#define DOUBLE_BR std::endl \
-                      << std::endl
-
 int main()
 {
     Menu gameMenu = Menu();
