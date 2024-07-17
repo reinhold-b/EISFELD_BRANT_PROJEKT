@@ -3,7 +3,7 @@
 ## Starten
 
 Um das Spiel auf einer Windows Machine auszuführen, muss die CMakeLists.txt in der root des Projekts liegen 
-(ist von Haus aus der Fall) und die CMake Tools Extension von Microsoft und die CMake Extension von twxs installiert sein.
+(ist von Haus aus der Fall) und die CMake Tools Extension von Microsoft, als auch die CMake Extension von twxs installiert sein.
 
 Nun VSCode einmal neu starten und unten links in der Toolbar das Projekt builden und ausführen.
 
@@ -41,4 +41,4 @@ Sie ist für das `SingleGameFrame` und das `MultiGameFrame` aus `Frame` polymorp
 
 ### FrameFactory
 
-Die FrameFactory stellt in der `main()` Frames je nach Spielmodus zur Verfügung. Sie wählt zufällig Bilder aus der ausgewählten Sequenz aus und konstruiiert das Frame mit den dazugehörigen Attributen wie Dateipfad und Labels.
+Die FrameFactory stellt in der `main()` Frames je nach Spielmodus zur Verfügung. Sie wählt zufällig Bilder aus der ausgewählten Sequenz aus und konstruiert das Frame mit den dazugehörigen Attributen wie Dateipfad und Labels.
