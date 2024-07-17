@@ -22,7 +22,7 @@ Da zwei Spielmodi verfügbar sind, sind zwei weitere Klassen von `Frame` abgelei
 ### SingleGameFrame
 
 Beim SingleGame wird nur eine Box angezeigt, die so schnell wie möglich angeklickt werden muss. 
-Der ‘SingleGameFrame‘ unsterscheidet sich dabei nur in der `show()` Methode, was folgend im Vergleich erläutert wird.
+Der ‘SingleGameFrame‘ unterscheidet sich dabei nur in der `show()` Methode, was folgend im Vergleich erläutert wird.
 
 ### MultiGameFrame
 
