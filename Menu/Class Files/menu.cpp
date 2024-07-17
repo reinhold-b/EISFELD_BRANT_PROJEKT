@@ -221,11 +221,11 @@ string Menu::readValidImageSequence()
     return newImageSeq;
 }
 
-
 void Menu::finishScreen(std::vector<double> times)
 {
-    struct timeImgPair{
-        //necassary for printing out the 3 best times with the imagenumber
+    struct timeImgPair
+    {
+        // necassary for printing out the 3 best times with the imagenumber
         double time;
         int imgNr;
     };
@@ -241,20 +241,22 @@ void Menu::finishScreen(std::vector<double> times)
     int c = 1;
     for (double &d : times)
     {
-        timesWithImg.push_back({d,c});
+        timesWithImg.push_back({d, c});
         c++;
     }
 
-    std::sort(timesWithImg.begin(), timesWithImg.end(), [](timeImgPair left, timeImgPair right){return left.time < right.time;});
-    
-    std::cout << std::endl << "Results of: " << m_playerName << std::endl;
-    std::cout   << "Your averagetime: " << avg / 1000 << " s " << std::endl
-                << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl;
-    
-    for (size_t i = 0; i < std::min<size_t>(3, timesWithImg.size()); ++i) {
-        std::cout << timesWithImg[i].time << " s\t at image Nr." << timesWithImg[i].imgNr << std::endl; 
+    std::sort(timesWithImg.begin(), timesWithImg.end(), [](timeImgPair left, timeImgPair right)
+              { return left.time < right.time; });
+
+    std::cout << std::endl
+              << "Results of: " << m_playerName << std::endl;
+    std::cout << "Your averagetime: " << avg / 1000 << " s " << std::endl
+              << "Your " << std::min<size_t>(3, timesWithImg.size()) << " fastest reactions:" << std::endl;
+
+    for (size_t i = 0; i < std::min<size_t>(3, timesWithImg.size()); ++i)
+    {
+        std::cout << timesWithImg[i].time << " s at image Nr." << timesWithImg[i].imgNr << std::endl;
     }
-    
 }
 
 #endif // MENU_CPP
